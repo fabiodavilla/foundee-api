@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "5daba551-43ee-4b3d-bfb3-9aeb8ca5a5d3",
+    "name": "Foundee",
+    "default": true,
+    "sortNum": 10000,
+    "created": "2022-08-24T02:29:33.735Z",
+    "modified": "2022-08-31T22:47:54.296Z",
+    "data": [
+      {
+        "name": "base_url",
+        "value": "http://localhost:5000"
+      },
+      {
+        "name": "user_dir",
+        "value": "user"
+      },
+      {
+        "name": "phone_dir",
+        "value": "phone"
+      },
+      {
+        "name": "commercial_dir",
+        "value": "commercial-info"
+      },
+      {
+        "name": "place_dir",
+        "value": "places"
+      },
+      {
+        "name": "place_comments_dir",
+        "value": "place-comments"
+      },
+      {
+        "name": "place_image_dir",
+        "value": "place-images"
+      },
+      {
+        "name": "points_dir",
+        "value": "points"
+      }
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+testando: auth
+
+documentar swagger em:
+  commercial-info
+  health
+  auth
+  place-comments
+  place-images
+  places
+  point
+  user
+  phone
+
+ajustar update user permitindo alterar email hard code
+
+upload de imagens (usuário e dos locais)
+
+checar obrigação de cada rota (commercial info precisa ter usuário)
+
+utilizar services ao invés de repository onde puder
+
+rever os findOne pq trás um valor padrão mesmo sem informar nada
+
+definir types
+
+mudar senha para encriptada
