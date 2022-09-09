@@ -12,15 +12,15 @@ Consiste da utilização de ferramentas de desenvolvimento modernas, como:
 
 tudo feito pelo Visual Studio Code
 
-[![NestJs Logo.](/assets/nestjs-logo.png "NestJs Logo.")](https://nestjs.com/)
-[![PostgreSQL Logo.](/assets/postgres-logo.png "PostgreSQL Logo.")](https://www.postgresql.org/)
-[![MongoDB Logo.](/assets/mongodb-logo.png "MongoDB Logo.")](https://www.mongodb.com/)
-[![VSCode Logo.](/assets/vscode-logo.png "VSCode Logo.")](https://code.visualstudio.com/)
+[![NestJs Logo.](/assets/nestjs-logo.png "NestJs Logo."){:height="80px" width="80px"}](https://nestjs.com/)
+[![PostgreSQL Logo.](/assets/postgres-logo.png "PostgreSQL Logo."){:height="80px" width="80px"}](https://www.postgresql.org/)
+[![MongoDB Logo.](/assets/mongodb-logo.png "MongoDB Logo."){:height="80px" width="80px"}](https://www.mongodb.com/)
+[![VSCode Logo.](/assets/vscode-logo.png "VSCode Logo."){:height="80px" width="80px"}](https://code.visualstudio.com/)
 
 
 ## Projeto realizado pela Fatec Ribeirão Preto
-[![Fatec Ribeirão Preto Logo.](/assets/fatecrp-logo.png "Fatec Ribeirão Preto Logo.")](http://www.fatecrp.edu.br/)
-[![Fatec Logo.](/assets/fatec-logo.png "Fatec Logo.")](https://www.vestibularfatec.com.br/home/)
+[![Fatec Ribeirão Preto Logo.](/assets/fatecrp-logo.png "Fatec Ribeirão Preto Logo."){:height="144px" width="300px"}](http://www.fatecrp.edu.br/)
+[![Fatec Logo.](/assets/fatec-logo.png "Fatec Logo."){:height="144px" width="300px"}](https://www.vestibularfatec.com.br/home/)
 
 
 #### Realizado por
