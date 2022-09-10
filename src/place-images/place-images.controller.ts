@@ -7,11 +7,14 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { PlaceImagesService } from './place-images.service';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
 import { UpdatePlaceImageDto } from './dto/update-place-image.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('Place Images')
 @Controller('place-images')
@@ -19,8 +22,12 @@ export class PlaceImagesController {
   constructor(private readonly placeImagesService: PlaceImagesService) {}
 
   @Post()
-  create(@Body() createPlaceImageDto: CreatePlaceImageDto) {
-    return this.placeImagesService.create(createPlaceImageDto);
+  @UseInterceptors(FileInterceptor('file'))
+  create(
+    @Body() createPlaceImageDto: CreatePlaceImageDto,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.placeImagesService.create(createPlaceImageDto, file);
   }
 
   @Get('by-place/:idPlace')
@@ -33,12 +40,13 @@ export class PlaceImagesController {
     return this.placeImagesService.findOneById(id);
   }
 
-  @Patch(':id')
+  @Patch()
+  @UseInterceptors(FileInterceptor('file'))
   update(
-    @Param('id', new ParseUUIDPipe()) id: string,
     @Body() updatePlaceImageDto: UpdatePlaceImageDto,
+    @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.placeImagesService.update(id, updatePlaceImageDto);
+    return this.placeImagesService.update(updatePlaceImageDto, file);
   }
 
   @Delete(':id')

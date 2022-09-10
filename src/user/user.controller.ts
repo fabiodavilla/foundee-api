@@ -100,7 +100,7 @@ export class UserController {
   @UseInterceptors(FileInterceptor('file'))
   @ApiResponse({
     status: 200,
-    description: 'Changed profile picture',
+    description: 'Change profile picture',
   })
   @ApiResponse({
     status: 500,
@@ -111,5 +111,35 @@ export class UserController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     return this.userService.uploadImage(id, file);
+  }
+
+  @Patch('profile/upload/:id')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiResponse({
+    status: 200,
+    description: 'Update profile picture',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Server error',
+  })
+  updateImage(
+    @Param('id', new ParseUUIDPipe()) id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.userService.updateImage(id, file);
+  }
+
+  @Delete('profile/upload/:id')
+  @ApiResponse({
+    status: 200,
+    description: 'Remove profile picture',
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Server error',
+  })
+  removeImage(@Param('id', new ParseUUIDPipe()) id: string) {
+    return this.userService.removeImage(id);
   }
 }

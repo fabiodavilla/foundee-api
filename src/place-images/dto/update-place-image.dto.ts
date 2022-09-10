@@ -1,6 +1,11 @@
-import { PickType } from '@nestjs/mapped-types';
+import { IntersectionType } from '@nestjs/mapped-types';
 import { CreatePlaceImageDto } from './create-place-image.dto';
 
-export class UpdatePlaceImageDto extends PickType(CreatePlaceImageDto, [
-  'imageString',
-] as const) {}
+class UpdateImage {
+  id: string;
+}
+
+export class UpdatePlaceImageDto extends IntersectionType(
+  UpdateImage,
+  CreatePlaceImageDto,
+) {}

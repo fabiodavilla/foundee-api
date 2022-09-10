@@ -11,6 +11,7 @@ import { CommercialInfoModule } from './commercial-info/commercial-info.module';
 import { PointModule } from './point/point.module';
 import { PhoneModule } from './phone/phone.module';
 import { HealthModule } from './health/health.module';
+import { UserImageModule } from './user-image/user-image.module';
 
 // Postgres Entities
 import { User } from './user/entities/user.entity';
@@ -19,10 +20,10 @@ import { PlaceImage } from './place-images/entities/place-image.entity';
 import { PlaceComment } from './place-comments/entities/place-comment.entity';
 import { CommercialInfo } from './commercial-info/entities/commercial-info.entity';
 import { Phone } from './phone/entities/phone.entity';
+import { UserImage } from './user-image/entities/user-image.entity';
 
 // Mongo Entities
 import { Point } from './point/entities/point.entity';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -34,7 +35,15 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: [CommercialInfo, User, PlaceComment, PlaceImage, Place, Phone],
+      entities: [
+        CommercialInfo,
+        User,
+        PlaceComment,
+        PlaceImage,
+        Place,
+        Phone,
+        UserImage,
+      ],
       synchronize: process.env.DATABASE_SYNC,
       logging: 'all',
     }),
@@ -56,7 +65,7 @@ import { AuthModule } from './auth/auth.module';
     PointModule,
     HealthModule,
     PhoneModule,
-    AuthModule,
+    UserImageModule,
   ],
 })
 export class AppModule {}

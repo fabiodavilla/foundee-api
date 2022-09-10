@@ -84,11 +84,11 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "9c226d1a-4607-4f17-a285-9dfe067fa673",
     "name": "Upload file",
-    "url": "{{base_url}}/{{user_dir}}/profile/upload/8bb934df-3d36-41f6-a308-d16847051f17",
+    "url": "{{base_url}}/{{user_dir}}/profile/upload/486c9dbb-d673-40ed-81dc-e2637dbab731",
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-08-24T19:55:22.895Z",
-    "modified": "2022-08-24T20:04:22.148Z",
+    "modified": "2022-09-09T22:34:09.780Z",
     "headers": [],
     "params": [],
     "body": {
@@ -98,7 +98,7 @@
       "files": [
         {
           "name": "file",
-          "value": "C:\\Users\\fabio\\Desktop\\DP142.png"
+          "value": "C:\\Users\\fabio\\Downloads\\image.jpg"
         }
       ]
     },
@@ -489,13 +489,24 @@
     "method": "POST",
     "sortNum": 290000,
     "created": "2022-08-30T22:28:44.481Z",
-    "modified": "2022-08-30T22:29:13.338Z",
+    "modified": "2022-09-10T13:49:58.463Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n  \"imageString\": \"string teste\"\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "idPlace",
+          "value": "3ca1f546-f869-4f1a-b215-933444245b29"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "C:\\Users\\fabio\\Downloads\\images.jpg"
+        }
+      ]
     },
     "tests": []
   },
@@ -518,11 +529,11 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e9efee83-3f40-4d29-83fe-91ea9f1560af",
     "name": "Get by id",
-    "url": "{{base_url}}/{{place_image_dir}}/2a6e8cf2-1a68-4dfa-8f7b-ecad136285d7",
+    "url": "{{base_url}}/{{place_image_dir}}/f121255c-0a08-4153-9893-a547f71a1555",
     "method": "GET",
     "sortNum": 310000,
     "created": "2022-08-30T22:38:44.854Z",
-    "modified": "2022-08-30T22:38:51.795Z",
+    "modified": "2022-09-10T13:57:14.868Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -532,17 +543,32 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e9efee83-3f40-4d29-83fe-91ea9f1560af",
     "name": "Update",
-    "url": "{{base_url}}/{{place_image_dir}}/2a6e8cf2-1a68-4dfa-8f7b-ecad136285d7",
+    "url": "{{base_url}}/{{place_image_dir}}",
     "method": "PATCH",
     "sortNum": 320000,
     "created": "2022-08-30T22:39:05.626Z",
-    "modified": "2022-08-30T22:42:25.055Z",
+    "modified": "2022-09-10T21:51:45.229Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n  \"imageString\": \"string teste aaaa\"\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "id",
+          "value": "f121255c-0a08-4153-9893-a547f71a1555"
+        },
+        {
+          "name": "idPlace",
+          "value": "3ca1f546-f869-4f1a-b215-933444245b29"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "C:\\Users\\fabio\\Downloads\\image.jpg"
+        }
+      ]
     },
     "tests": []
   },
@@ -550,7 +576,7 @@
     "_id": "ea6a0e16-41c0-4e7f-a24f-b1937bf548a6",
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e9efee83-3f40-4d29-83fe-91ea9f1560af",
-    "name": "Gel all by place Copy",
+    "name": "Delete",
     "url": "{{base_url}}/{{place_image_dir}}/2a6e8cf2-1a68-4dfa-8f7b-ecad136285d7",
     "method": "DELETE",
     "sortNum": 330000,
@@ -651,5 +677,44 @@
     "created": "2022-08-31T22:49:55.407Z",
     "modified": "2022-08-31T22:49:55.408Z",
     "headers": []
+  },
+  {
+    "_id": "e3c33a85-bc6e-4e62-8b01-029d1baf452f",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "9c226d1a-4607-4f17-a285-9dfe067fa673",
+    "name": "Update upload file",
+    "url": "{{base_url}}/{{user_dir}}/profile/upload/486c9dbb-d673-40ed-81dc-e2637dbab731",
+    "method": "PATCH",
+    "sortNum": 70000,
+    "created": "2022-09-10T11:37:14.958Z",
+    "modified": "2022-09-10T11:58:54.423Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [],
+      "files": [
+        {
+          "name": "file",
+          "value": "C:\\Users\\fabio\\Desktop\\term-bg-1-666de2d9.jpg"
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "a00dd870-3441-41a8-b5c4-3ed582a5805e",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "9c226d1a-4607-4f17-a285-9dfe067fa673",
+    "name": "Remove upload file",
+    "url": "{{base_url}}/{{user_dir}}/profile/upload/486c9dbb-d673-40ed-81dc-e2637dbab731",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-09-10T11:45:51.699Z",
+    "modified": "2022-09-10T11:46:23.733Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

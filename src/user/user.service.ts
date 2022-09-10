@@ -1,5 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserImageService } from 'src/user-image/user-image.service';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -9,7 +10,9 @@ import { User } from './entities/user.entity';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
+    private readonly usersRepository: Repository<User>,
+    @Inject(UserImageService)
+    private readonly userImageService: UserImageService,
   ) {}
 
   // Criar usuário com o tipo definido
@@ -42,7 +45,7 @@ export class UserService {
   // Atualizar usuário com o tipo definido e o ID
   update(id: string, updateUserDto: UpdateUserDto) {
     try {
-      if (updateUserDto.email)
+      if (!updateUserDto.email)
         throw new HttpException(
           'Cannot change e-mail from user!',
           HttpStatus.INTERNAL_SERVER_ERROR,
@@ -69,8 +72,56 @@ export class UserService {
       const user = await this.findOneById(id);
 
       if (user) {
-        // user.imageString = file;
+        const uploaded = await this.userImageService.create(user, file);
+
+        if (uploaded) return true;
+
+        return false;
+      } else {
+        throw new HttpException(
+          'User not found!',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
       }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  // Update de imagem
+  async updateImage(id: string, file: Express.Multer.File) {
+    try {
+      const user = await this.findOneById(id);
+      const image = await this.usersRepository.findOne(user);
+
+      if (user && image) {
+        const uploaded = await this.userImageService.update(user, file);
+
+        return uploaded.affected > 0;
+      } else {
+        throw new HttpException(
+          'User not found!',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  async removeImage(id: string) {
+    try {
+      const user = await this.findOneById(id);
+
+      if (user) {
+        const result = await this.userImageService.remove(user);
+
+        return result.affected > 0;
+      } else
+        throw new HttpException(
+          'User not found!',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
     } catch (error) {
       throw new Error(error);
     }

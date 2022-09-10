@@ -44,9 +44,6 @@ export class User {
   @Column({ type: 'smallint', nullable: false, default: 1 })
   status: number;
 
-  @Column({ type: 'text', nullable: true })
-  imageString: string;
-
   @OneToMany(() => CommercialInfo, (commercialInfo) => commercialInfo.user)
   commercialInfo: CommercialInfo;
 

@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Place } from 'src/places/entities/place.entity';
+import { toBase64 } from 'src/utils/base64';
 import { Repository } from 'typeorm';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
 import { UpdatePlaceImageDto } from './dto/update-place-image.dto';
@@ -15,7 +16,10 @@ export class PlaceImagesService {
     private readonly placecRepository: Repository<Place>,
   ) {}
 
-  async create(createPlaceImageDto: CreatePlaceImageDto) {
+  async create(
+    createPlaceImageDto: CreatePlaceImageDto,
+    file: Express.Multer.File,
+  ) {
     const place = await this.placecRepository.findOne(
       createPlaceImageDto.idPlace,
     );
@@ -27,7 +31,7 @@ export class PlaceImagesService {
       );
 
     const newPlaceImage = new PlaceImage();
-    newPlaceImage.imageString = createPlaceImageDto.imageString;
+    newPlaceImage.imageString = toBase64(file);
     newPlaceImage.place = place;
 
     const placeImage = this.placeImagesRepository.create(newPlaceImage);
@@ -46,16 +50,27 @@ export class PlaceImagesService {
     return this.placeImagesRepository.findOne(id);
   }
 
-  async update(id: string, updatePlaceImageDto: UpdatePlaceImageDto) {
-    const placeImage = await this.findOneById(id);
+  async update(
+    updatePlaceImageDto: UpdatePlaceImageDto,
+    file: Express.Multer.File,
+  ) {
+    const placeImage = await this.findOneById(updatePlaceImageDto.id);
+    const place = await this.placecRepository.findOne(
+      updatePlaceImageDto.idPlace,
+    );
 
-    if (!placeImage)
+    if (!placeImage || !place)
       throw new HttpException(
-        'PlaceImage not found!',
+        'Place or PlaceImage not found!',
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
 
-    return this.placeImagesRepository.update(id, { ...updatePlaceImageDto });
+    placeImage.place = place;
+    placeImage.imageString = toBase64(file);
+
+    return this.placeImagesRepository.update(updatePlaceImageDto.id, {
+      ...placeImage,
+    });
   }
 
   remove(id: string) {
