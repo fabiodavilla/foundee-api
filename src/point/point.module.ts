@@ -4,14 +4,15 @@ import { PointController } from './point.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Point } from './entities/point.entity';
 import { ConfigModule } from '@nestjs/config';
-import { Place } from 'src/places/entities/place.entity';
-import { User } from 'src/user/entities/user.entity';
+import { UserModule } from 'src/user/user.module';
+import { PlacesModule } from 'src/places/places.module';
 
 @Module({
   imports: [
     ConfigModule,
+    UserModule,
+    PlacesModule,
     TypeOrmModule.forFeature([Point], 'mongo'),
-    TypeOrmModule.forFeature([Place, User]),
   ],
   controllers: [PointController],
   providers: [PointService],

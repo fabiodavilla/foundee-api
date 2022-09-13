@@ -7,13 +7,9 @@ documentar swagger em:
   place-comments
   place-images
   places
-  point
-  user
   phone
 
 ajustar update user permitindo alterar email hard code
-
-upload de imagens (usuário e dos locais)
 
 checar obrigação de cada rota (commercial info precisa ter usuário)
 

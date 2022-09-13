@@ -9,5 +9,6 @@ import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.ent
   imports: [TypeOrmModule.forFeature([Place, CommercialInfo])],
   controllers: [PlacesController],
   providers: [PlacesService],
+  exports: [PlacesService],
 })
 export class PlacesModule {}

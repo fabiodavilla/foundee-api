@@ -1,8 +1,8 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Place } from 'src/places/entities/place.entity';
-import { User } from 'src/user/entities/user.entity';
-import { Between, Repository } from 'typeorm';
+import { PlacesService } from 'src/places/places.service';
+import { UserService } from 'src/user/user.service';
+import { Repository } from 'typeorm';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { Point } from './entities/point.entity';
@@ -12,20 +12,15 @@ export class PointService {
   constructor(
     @InjectRepository(Point, 'mongo')
     private readonly pointRepository: Repository<Point>,
-    @InjectRepository(Place)
-    private readonly placeRepository: Repository<Place>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @Inject(PlacesService)
+    private readonly placeService: PlacesService,
+    @Inject(UserService)
+    private readonly userService: UserService,
   ) {}
 
   async create(createPointDto: CreatePointDto) {
-    const place = await this.placeRepository.find({
-      where: { id: createPointDto.idPlace },
-    });
-
-    const user = await this.userRepository.find({
-      where: { id: createPointDto.idUser },
-    });
+    const place = await this.placeService.findOneById(createPointDto.idPlace);
+    const user = await this.userService.findOneById(createPointDto.idUser);
 
     if (!user || !place)
       throw new HttpException(
@@ -61,7 +56,7 @@ export class PointService {
   }
 
   async findAllByUser(idUser: string) {
-    const user = await this.userRepository.findOne(idUser);
+    const user = await this.userService.findOneById(idUser);
 
     if (!user)
       throw new HttpException(
@@ -75,7 +70,7 @@ export class PointService {
   }
 
   async update(id: string, idUser: string, updatePointDto: UpdatePointDto) {
-    const user = await this.userRepository.findOne(idUser);
+    const user = await this.userService.findOneById(idUser);
 
     if (!user)
       throw new HttpException(
@@ -87,7 +82,7 @@ export class PointService {
   }
 
   async remove(id: string, idUser: string) {
-    const user = await this.userRepository.findOne(idUser);
+    const user = await this.userService.findOneById(idUser);
 
     if (!user)
       throw new HttpException(
