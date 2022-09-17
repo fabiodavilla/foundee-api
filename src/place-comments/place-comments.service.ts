@@ -1,7 +1,7 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Place } from 'src/places/entities/place.entity';
-import { User } from 'src/user/entities/user.entity';
+import { PlacesService } from 'src/places/places.service';
+import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { CreatePlaceCommentDto } from './dto/create-place-comment.dto';
 import { UpdatePlaceCommentDto } from './dto/update-place-comment.dto';
@@ -12,10 +12,10 @@ export class PlaceCommentsService {
   constructor(
     @InjectRepository(PlaceComment)
     private readonly placeCommentRepository: Repository<PlaceComment>,
-    @InjectRepository(Place)
-    private readonly placeRepository: Repository<Place>,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @Inject(PlacesService)
+    private readonly placeService: PlacesService,
+    @Inject(UserService)
+    private readonly userService: UserService,
   ) {}
 
   async create(createPlaceCommentDto: CreatePlaceCommentDto) {
@@ -26,10 +26,10 @@ export class PlaceCommentsService {
           HttpStatus.INTERNAL_SERVER_ERROR,
         );
 
-      const place = await this.placeRepository.findOne(
+      const place = await this.placeService.findOneById(
         createPlaceCommentDto.idPlace,
       );
-      const user = await this.userRepository.findOne(
+      const user = await this.userService.findOneById(
         createPlaceCommentDto.idUser,
       );
 
@@ -57,7 +57,7 @@ export class PlaceCommentsService {
   }
 
   async findAllByPlaceId(idPlace: string) {
-    const place = await this.placeRepository.findOne(idPlace);
+    const place = await this.placeService.findOneById(idPlace);
 
     if (!place)
       throw new HttpException(
@@ -71,7 +71,7 @@ export class PlaceCommentsService {
   }
 
   async findAllByUser(idUser: string) {
-    const user = await this.userRepository.findOne(idUser);
+    const user = await this.userService.findOneById(idUser);
 
     if (!user)
       throw new HttpException(

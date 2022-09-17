@@ -3,11 +3,11 @@ import { PlaceCommentsService } from './place-comments.service';
 import { PlaceCommentsController } from './place-comments.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlaceComment } from './entities/place-comment.entity';
-import { Place } from 'src/places/entities/place.entity';
-import { User } from 'src/user/entities/user.entity';
+import { UserModule } from 'src/user/user.module';
+import { PlacesModule } from 'src/places/places.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PlaceComment, Place, User])],
+  imports: [UserModule, PlacesModule, TypeOrmModule.forFeature([PlaceComment])],
   controllers: [PlaceCommentsController],
   providers: [PlaceCommentsService],
 })

@@ -1,6 +1,7 @@
 import { User } from 'src/user/entities/user.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { ApiDocumentation } from '../interfaces/api-documentation';
+import serverError from './commonServerError';
 
 const userDocumentation: ApiDocumentation = {
   // ----- Create
@@ -9,10 +10,7 @@ const userDocumentation: ApiDocumentation = {
     description: 'An user has been successfully created',
     type: User,
   },
-  createBadResponse: {
-    status: 500,
-    description: 'An information is incorrect',
-  },
+  createBadResponse: serverError,
   // ----- End Create
 
   // ----- Get All
@@ -21,10 +19,7 @@ const userDocumentation: ApiDocumentation = {
     description: 'Get a list of all users',
     type: Array<User>,
   },
-  getAllBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  getAllBadResponse: serverError,
   // ----- End Get All
 
   // ----- Get By Id
@@ -33,10 +28,7 @@ const userDocumentation: ApiDocumentation = {
     description: 'Get one user info',
     type: User,
   },
-  getByIdBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  getByIdBadResponse: serverError,
   // ----- End Get By Id
 
   // ----- Update
@@ -45,10 +37,7 @@ const userDocumentation: ApiDocumentation = {
     description: 'Update one or more user info',
     type: UpdateResult,
   },
-  updateBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  updateBadResponse: serverError,
   // ----- End Update
 
   // ----- Remove
@@ -57,10 +46,7 @@ const userDocumentation: ApiDocumentation = {
     description: 'Removed user from the system',
     type: DeleteResult,
   },
-  removeBadResult: {
-    status: 500,
-    description: 'Server error',
-  },
+  removeBadResult: serverError,
   // ----- End Remove
 
   // ----- Change Profile Picture
@@ -68,10 +54,7 @@ const userDocumentation: ApiDocumentation = {
     status: 200,
     description: 'Change profile picture',
   },
-  changeProfilePictureBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  changeProfilePictureBadResponse: serverError,
   // ----- End Change Profile Picture
 
   // ----- Update Profile Picture
@@ -79,10 +62,7 @@ const userDocumentation: ApiDocumentation = {
     status: 200,
     description: 'Update profile picture',
   },
-  updateProfilePictureBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  updateProfilePictureBadResponse: serverError,
   // ----- End Update Profile Picture
 
   // ----- Remove Profile Picture
@@ -90,10 +70,7 @@ const userDocumentation: ApiDocumentation = {
     status: 200,
     description: 'Remove profile picture',
   },
-  removeProfilePictureBadResponse: {
-    status: 500,
-    description: 'Server error',
-  },
+  removeProfilePictureBadResponse: serverError,
   // ----- End Remove Profile Picture
 };
 

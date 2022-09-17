@@ -1,6 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Place } from 'src/places/entities/place.entity';
+import { PlacesService } from 'src/places/places.service';
 import { toBase64 } from 'src/utils/base64';
 import { Repository } from 'typeorm';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
@@ -12,15 +12,15 @@ export class PlaceImagesService {
   constructor(
     @InjectRepository(PlaceImage)
     private readonly placeImagesRepository: Repository<PlaceImage>,
-    @InjectRepository(Place)
-    private readonly placecRepository: Repository<Place>,
+    @Inject(PlacesService)
+    private readonly placesService: PlacesService,
   ) {}
 
   async create(
     createPlaceImageDto: CreatePlaceImageDto,
     file: Express.Multer.File,
   ) {
-    const place = await this.placecRepository.findOne(
+    const place = await this.placesService.findOneById(
       createPlaceImageDto.idPlace,
     );
 
@@ -39,7 +39,7 @@ export class PlaceImagesService {
   }
 
   findAllByPlaceId(idPlace: string) {
-    const place = this.placecRepository.findOne(idPlace);
+    const place = this.placesService.findOneById(idPlace);
 
     return this.placeImagesRepository.find({
       where: { place },
@@ -55,7 +55,7 @@ export class PlaceImagesService {
     file: Express.Multer.File,
   ) {
     const placeImage = await this.findOneById(updatePlaceImageDto.id);
-    const place = await this.placecRepository.findOne(
+    const place = await this.placesService.findOneById(
       updatePlaceImageDto.idPlace,
     );
 

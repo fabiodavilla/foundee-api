@@ -1,6 +1,7 @@
 import { Point } from 'src/point/entities/point.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { ApiDocumentation } from '../interfaces/api-documentation';
+import serverError from './commonServerError';
 
 const pointResponse: ApiDocumentation = {
   // ----- Create
@@ -9,10 +10,7 @@ const pointResponse: ApiDocumentation = {
     description: 'An point has been successfully created',
     type: Point,
   },
-  createBadResponse: {
-    status: 500,
-    description: 'An information is incorrect',
-  },
+  createBadResponse: serverError,
   // ----- End Create
 
   // ----- Get Square
@@ -21,10 +19,7 @@ const pointResponse: ApiDocumentation = {
     description: 'Return the points of the area',
     type: Array<Point>,
   },
-  getSquareBadResponse: {
-    status: 500,
-    description: 'Server Error',
-  },
+  getSquareBadResponse: serverError,
   // ----- End Get Square
 
   // ----- Get By User
@@ -33,10 +28,7 @@ const pointResponse: ApiDocumentation = {
     description: 'Return the points of the informed user',
     type: Array<Point>,
   },
-  getByUserBadResponse: {
-    status: 500,
-    description: 'Server Error',
-  },
+  getByUserBadResponse: serverError,
   // ----- End Get By User
 
   // ----- Update
@@ -45,10 +37,7 @@ const pointResponse: ApiDocumentation = {
     description: 'Update the point',
     type: UpdateResult,
   },
-  updateBadResponse: {
-    status: 500,
-    description: 'Server Error',
-  },
+  updateBadResponse: serverError,
   // ----- End Update
 
   // ----- Remove
@@ -57,10 +46,7 @@ const pointResponse: ApiDocumentation = {
     description: 'Remove the point',
     type: DeleteResult,
   },
-  removeBadResponse: {
-    status: 500,
-    description: 'Server Error',
-  },
+  removeBadResponse: serverError,
   // ----- End Remove
 };
 

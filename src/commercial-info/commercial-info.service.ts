@@ -1,6 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/entities/user.entity';
+import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { CreateCommercialInfoDto } from './dto/create-commercial-info.dto';
 import { UpdateCommercialInfoDto } from './dto/update-commercial-info.dto';
@@ -10,13 +10,13 @@ import { CommercialInfo } from './entities/commercial-info.entity';
 export class CommercialInfoService {
   constructor(
     @InjectRepository(CommercialInfo)
-    private commercialInfoRepository: Repository<CommercialInfo>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly commercialInfoRepository: Repository<CommercialInfo>,
+    @Inject(UserService)
+    private readonly userService: UserService,
   ) {}
 
   async create(createCommercialInfoDto: CreateCommercialInfoDto) {
-    const user = await this.userRepository.findOne(
+    const user = await this.userService.findOneById(
       createCommercialInfoDto.idUser,
     );
 
@@ -46,7 +46,7 @@ export class CommercialInfoService {
   }
 
   findAllByUser(idUser: string) {
-    const user = this.userRepository.findOne(idUser);
+    const user = this.userService.findOneById(idUser);
 
     return this.commercialInfoRepository.find({
       where: {

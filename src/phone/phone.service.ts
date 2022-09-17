@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/user/entities/user.entity';
+import { UserService } from 'src/user/user.service';
 import { Repository } from 'typeorm';
 import { CreatePhoneDto } from './dto/create-phone.dto';
 import { UpdatePhoneDto } from './dto/update-phone.dto';
@@ -10,15 +10,15 @@ import { Phone } from './entities/phone.entity';
 export class PhoneService {
   constructor(
     @InjectRepository(Phone)
-    private phoneRepository: Repository<Phone>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly phoneRepository: Repository<Phone>,
+    @Inject(UserService)
+    private readonly userService: UserService,
   ) {}
 
   async create(id: string, createPhoneDto: CreatePhoneDto) {
     try {
       const newPhone = new Phone();
-      const user = await this.userRepository.findOne(id);
+      const user = await this.userService.findOneById(id);
 
       newPhone.user = user;
       newPhone.number = createPhoneDto.number;
@@ -40,7 +40,7 @@ export class PhoneService {
   }
 
   findAllByIdUser(idUser: string) {
-    const user = this.userRepository.findOne(idUser);
+    const user = this.userService.findOneById(idUser);
 
     return this.phoneRepository.find({
       where: {

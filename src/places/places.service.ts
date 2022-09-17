@@ -1,5 +1,6 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CommercialInfoService } from 'src/commercial-info/commercial-info.service';
 import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.entity';
 import { Repository } from 'typeorm';
 import { CreatePlaceDto } from './dto/create-place.dto';
@@ -11,17 +12,17 @@ export class PlacesService {
   constructor(
     @InjectRepository(Place)
     private readonly placesRepository: Repository<Place>,
-    @InjectRepository(CommercialInfo)
-    private readonly commercialInfoRepository: Repository<CommercialInfo>,
+    @Inject(CommercialInfoService)
+    private readonly commercialInfoService: CommercialInfoService,
   ) {}
 
   async create(createPlaceDto: CreatePlaceDto) {
     try {
       let commercialInfo: CommercialInfo;
 
-      if (createPlaceDto.commercialInfo) {
-        commercialInfo = await this.commercialInfoRepository.findOne(
-          createPlaceDto.commercialInfo,
+      if (createPlaceDto.commercialInfoId) {
+        commercialInfo = await this.commercialInfoService.findOne(
+          createPlaceDto.commercialInfoId,
         );
 
         if (!commercialInfo)
@@ -54,9 +55,7 @@ export class PlacesService {
   }
 
   async findAllByCommercialInfo(idCommInfo: string) {
-    const commercialInfo = await this.commercialInfoRepository.findOne(
-      idCommInfo,
-    );
+    const commercialInfo = await this.commercialInfoService.findOne(idCommInfo);
 
     if (!commercialInfo)
       throw new HttpException(

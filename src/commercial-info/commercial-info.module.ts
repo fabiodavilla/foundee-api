@@ -3,11 +3,12 @@ import { CommercialInfoService } from './commercial-info.service';
 import { CommercialInfoController } from './commercial-info.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CommercialInfo } from './entities/commercial-info.entity';
-import { User } from 'src/user/entities/user.entity';
+import { UserModule } from 'src/user/user.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([CommercialInfo, User])],
+  imports: [UserModule, TypeOrmModule.forFeature([CommercialInfo])],
   controllers: [CommercialInfoController],
   providers: [CommercialInfoService],
+  exports: [CommercialInfoService],
 })
 export class CommercialInfoModule {}

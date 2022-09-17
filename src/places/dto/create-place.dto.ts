@@ -3,5 +3,5 @@ export class CreatePlaceDto {
   description: string;
   status: number;
   placeType: number;
-  commercialInfo?: string;
+  commercialInfoId?: string;
 }

@@ -3,10 +3,10 @@ import { PlacesService } from './places.service';
 import { PlacesController } from './places.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Place } from './entities/place.entity';
-import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.entity';
+import { CommercialInfoModule } from 'src/commercial-info/commercial-info.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Place, CommercialInfo])],
+  imports: [CommercialInfoModule, TypeOrmModule.forFeature([Place])],
   controllers: [PlacesController],
   providers: [PlacesService],
   exports: [PlacesService],

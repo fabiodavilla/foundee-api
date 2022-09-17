@@ -301,12 +301,12 @@
     "method": "POST",
     "sortNum": 180000,
     "created": "2022-08-27T13:34:56.847Z",
-    "modified": "2022-08-27T13:39:58.828Z",
+    "modified": "2022-09-13T00:26:03.476Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfo\": \"1e53f941-67c0-4757-84a4-cc722ceef17a\"\n}",
+      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfoId\": \"1e53f941-67c0-4757-84a4-cc722ceef17a\"\n}",
       "form": []
     },
     "tests": []

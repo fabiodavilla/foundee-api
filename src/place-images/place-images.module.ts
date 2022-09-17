@@ -3,10 +3,10 @@ import { PlaceImagesService } from './place-images.service';
 import { PlaceImagesController } from './place-images.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PlaceImage } from './entities/place-image.entity';
-import { Place } from 'src/places/entities/place.entity';
+import { PlacesModule } from 'src/places/places.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PlaceImage, Place])],
+  imports: [PlacesModule, TypeOrmModule.forFeature([PlaceImage])],
   controllers: [PlaceImagesController],
   providers: [PlaceImagesService],
 })
