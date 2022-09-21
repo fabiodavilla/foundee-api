@@ -27,9 +27,13 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-08-24T02:34:32.357Z",
-    "modified": "2022-08-24T02:37:18.110Z",
+    "modified": "2022-09-21T23:27:56.944Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2MzgwMjg0NywiZXhwIjoxNjYzODAyOTA3fQ.09fEE3E5mHxbMNPdsBoC2urgdb51vORfI8QGKG9z7HQ"
+    },
     "tests": []
   },
   {
@@ -730,12 +734,12 @@
     "method": "POST",
     "sortNum": 370000,
     "created": "2022-09-19T21:48:44.017Z",
-    "modified": "2022-09-19T22:25:20.680Z",
+    "modified": "2022-09-21T23:16:48.547Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"username\": \"john\",\n  \"password\": \"changeme\"\n}",
+      "raw": "{\n  \"email\": \"fabio@email.com\",\n  \"password\": \"senha\"\n}",
       "form": []
     },
     "tests": []

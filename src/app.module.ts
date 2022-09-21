@@ -12,6 +12,7 @@ import { PointModule } from './point/point.module';
 import { PhoneModule } from './phone/phone.module';
 import { HealthModule } from './health/health.module';
 import { UserImageModule } from './user-image/user-image.module';
+import { AuthModule } from './auth/auth.module';
 
 // Postgres Entities
 import { User } from './user/entities/user.entity';
@@ -24,7 +25,6 @@ import { UserImage } from './user-image/entities/user-image.entity';
 
 // Mongo Entities
 import { Point } from './point/entities/point.entity';
-import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [

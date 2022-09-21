@@ -9,6 +9,7 @@ import {
   UseInterceptors,
   UploadedFile,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -16,6 +17,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import userResponse from 'src/common/api-documentation/userResponse';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Users')
 @Controller('user')
@@ -30,6 +32,7 @@ export class UserController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   @ApiResponse(userResponse.getAllOkResponse)
   @ApiResponse(userResponse.getAllBadResponse)
   findAll() {
