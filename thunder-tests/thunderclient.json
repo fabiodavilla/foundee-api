@@ -720,5 +720,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "8b9f58d2-0a90-4dfe-baa0-f01ec83db282",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "6b3a65ff-f10f-401c-9ee9-e7e223356e57",
+    "name": "Login",
+    "url": "{{base_url}}/{{auth_dir}}/login",
+    "method": "POST",
+    "sortNum": 370000,
+    "created": "2022-09-19T21:48:44.017Z",
+    "modified": "2022-09-19T22:25:20.680Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"username\": \"john\",\n  \"password\": \"changeme\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

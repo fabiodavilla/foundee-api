@@ -24,6 +24,7 @@ import { UserImage } from './user-image/entities/user-image.entity';
 
 // Mongo Entities
 import { Point } from './point/entities/point.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { Point } from './point/entities/point.entity';
     HealthModule,
     PhoneModule,
     UserImageModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
