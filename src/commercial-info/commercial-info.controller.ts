@@ -7,13 +7,16 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CommercialInfoService } from './commercial-info.service';
 import { CreateCommercialInfoDto } from './dto/create-commercial-info.dto';
 import { UpdateCommercialInfoDto } from './dto/update-commercial-info.dto';
 
 @ApiTags('Commercial Info')
+@UseGuards(JwtAuthGuard)
 @Controller('commercial-info')
 export class CommercialInfoController {
   constructor(private readonly commercialInfoService: CommercialInfoService) {}

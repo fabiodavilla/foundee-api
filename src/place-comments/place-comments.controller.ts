@@ -7,13 +7,16 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { PlaceCommentsService } from './place-comments.service';
 import { CreatePlaceCommentDto } from './dto/create-place-comment.dto';
 import { UpdatePlaceCommentDto } from './dto/update-place-comment.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Place Comments')
+@UseGuards(JwtAuthGuard)
 @Controller('place-comments')
 export class PlaceCommentsController {
   constructor(private readonly placeCommentsService: PlaceCommentsService) {}

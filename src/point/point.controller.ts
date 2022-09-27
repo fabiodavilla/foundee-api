@@ -9,14 +9,17 @@ import {
   ParseUUIDPipe,
   Query,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { PointService } from './point.service';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import pointResponse from 'src/common/api-documentation/pointResponse';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Points')
+@UseGuards(JwtAuthGuard)
 @Controller('points')
 export class PointController {
   constructor(private readonly pointService: PointService) {}

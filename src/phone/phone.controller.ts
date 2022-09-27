@@ -7,13 +7,17 @@ import {
   Param,
   Delete,
   ParseUUIDPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { PhoneService } from './phone.service';
 import { CreatePhoneDto } from './dto/create-phone.dto';
 import { UpdatePhoneDto } from './dto/update-phone.dto';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import phoneResponse from 'src/common/api-documentation/phoneResponse';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+@ApiTags('Phone')
+@UseGuards(JwtAuthGuard)
 @Controller('phone')
 export class PhoneController {
   constructor(private readonly phoneService: PhoneService) {}

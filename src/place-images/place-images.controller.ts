@@ -9,14 +9,17 @@ import {
   ParseUUIDPipe,
   UseInterceptors,
   UploadedFile,
+  UseGuards,
 } from '@nestjs/common';
 import { PlaceImagesService } from './place-images.service';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
 import { UpdatePlaceImageDto } from './dto/update-place-image.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Place Images')
+@UseGuards(JwtAuthGuard)
 @Controller('place-images')
 export class PlaceImagesController {
   constructor(private readonly placeImagesService: PlaceImagesService) {}

@@ -20,6 +20,7 @@ import userResponse from 'src/common/api-documentation/userResponse';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Users')
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -32,7 +33,6 @@ export class UserController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
   @ApiResponse(userResponse.getAllOkResponse)
   @ApiResponse(userResponse.getAllBadResponse)
   findAll() {

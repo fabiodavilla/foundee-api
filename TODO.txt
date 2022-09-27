@@ -1,7 +1,4 @@
-adicionar JWT em todas as rotas
-
-documentar swagger em:
-  commercial-info
+documentar swagger em: commercial-info
   health
   auth
   place-comments
