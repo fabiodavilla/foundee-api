@@ -45,12 +45,6 @@ export class UserService {
   // Atualizar usuário com o tipo definido e o ID
   update(id: string, updateUserDto: UpdateUserDto) {
     try {
-      if (!updateUserDto.email)
-        throw new HttpException(
-          'Cannot change e-mail from user!',
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-
       return this.usersRepository.update(id, { ...updateUserDto });
     } catch (error) {
       throw new Error(error);

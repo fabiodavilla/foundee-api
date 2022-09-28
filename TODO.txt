@@ -1,5 +1,3 @@
-ajustar update user permitindo alterar email hard code
-
 checar obrigação de cada rota (commercial info precisa ter usuário)
 
 rever os findOne pq trás um valor padrão mesmo sem informar nada
