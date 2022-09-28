@@ -4,7 +4,6 @@ import { PlacesService } from 'src/places/places.service';
 import { toBase64 } from 'src/utils/base64';
 import { Repository } from 'typeorm';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
-import { UpdatePlaceImageDto } from './dto/update-place-image.dto';
 import { PlaceImage } from './entities/place-image.entity';
 
 @Injectable()
@@ -48,29 +47,6 @@ export class PlaceImagesService {
 
   findOneById(id: string) {
     return this.placeImagesRepository.findOne(id);
-  }
-
-  async update(
-    updatePlaceImageDto: UpdatePlaceImageDto,
-    file: Express.Multer.File,
-  ) {
-    const placeImage = await this.findOneById(updatePlaceImageDto.id);
-    const place = await this.placesService.findOneById(
-      updatePlaceImageDto.idPlace,
-    );
-
-    if (!placeImage || !place)
-      throw new HttpException(
-        'Place or PlaceImage not found!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
-
-    placeImage.place = place;
-    placeImage.imageString = toBase64(file);
-
-    return this.placeImagesRepository.update(updatePlaceImageDto.id, {
-      ...placeImage,
-    });
   }
 
   remove(id: string) {

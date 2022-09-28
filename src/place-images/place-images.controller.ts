@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   ParseUUIDPipe,
@@ -13,10 +12,10 @@ import {
 } from '@nestjs/common';
 import { PlaceImagesService } from './place-images.service';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
-import { UpdatePlaceImageDto } from './dto/update-place-image.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import placeImagesResponse from 'src/common/api-documentation/placeImagesResponse';
 
 @ApiTags('Place Images')
 @UseGuards(JwtAuthGuard)
@@ -25,6 +24,8 @@ export class PlaceImagesController {
   constructor(private readonly placeImagesService: PlaceImagesService) {}
 
   @Post()
+  @ApiResponse(placeImagesResponse.createOkResponse)
+  @ApiResponse(placeImagesResponse.createBadResponse)
   @UseInterceptors(FileInterceptor('file'))
   create(
     @Body() createPlaceImageDto: CreatePlaceImageDto,
@@ -34,25 +35,22 @@ export class PlaceImagesController {
   }
 
   @Get('by-place/:idPlace')
+  @ApiResponse(placeImagesResponse.getAllByPlaceOkResponse)
+  @ApiResponse(placeImagesResponse.getAllByPlaceBadResponse)
   findAllByPlaceId(@Param('idPlace', new ParseUUIDPipe()) idPlace: string) {
     return this.placeImagesService.findAllByPlaceId(idPlace);
   }
 
   @Get(':id')
+  @ApiResponse(placeImagesResponse.getByIdOkResponse)
+  @ApiResponse(placeImagesResponse.getByIdBadResponse)
   findOneById(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.placeImagesService.findOneById(id);
   }
 
-  @Patch()
-  @UseInterceptors(FileInterceptor('file'))
-  update(
-    @Body() updatePlaceImageDto: UpdatePlaceImageDto,
-    @UploadedFile() file: Express.Multer.File,
-  ) {
-    return this.placeImagesService.update(updatePlaceImageDto, file);
-  }
-
   @Delete(':id')
+  @ApiResponse(placeImagesResponse.removeOkResult)
+  @ApiResponse(placeImagesResponse.removeBadResult)
   remove(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.placeImagesService.remove(id);
   }
