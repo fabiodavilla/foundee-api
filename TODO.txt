@@ -4,6 +4,4 @@ rever os findOne pq trás um valor padrão mesmo sem informar nada
 
 definir types de funções
 
-mudar senha para encriptada
-
 ver resultados com informações delicadas

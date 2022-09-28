@@ -20,7 +20,6 @@ import userResponse from 'src/common/api-documentation/userResponse';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @ApiTags('Users')
-@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -35,6 +34,7 @@ export class UserController {
   @Get()
   @ApiResponse(userResponse.getAllOkResponse)
   @ApiResponse(userResponse.getAllBadResponse)
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.userService.findAll();
   }
@@ -42,6 +42,7 @@ export class UserController {
   @Get(':id')
   @ApiResponse(userResponse.getByIdOkResponse)
   @ApiResponse(userResponse.getByIdBadResponse)
+  @UseGuards(JwtAuthGuard)
   findOneById(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.userService.findOneById(id);
   }
@@ -49,6 +50,7 @@ export class UserController {
   @Patch(':id')
   @ApiResponse(userResponse.updateOkResponse)
   @ApiResponse(userResponse.updateBadResponse)
+  @UseGuards(JwtAuthGuard)
   update(
     @Param('id', new ParseUUIDPipe()) id: string,
     @Body() updateUserDto: UpdateUserDto,
@@ -59,6 +61,7 @@ export class UserController {
   @Delete(':id')
   @ApiResponse(userResponse.removeOkResult)
   @ApiResponse(userResponse.removeBadResult)
+  @UseGuards(JwtAuthGuard)
   remove(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.userService.remove(id);
   }
@@ -67,6 +70,7 @@ export class UserController {
   @UseInterceptors(FileInterceptor('file'))
   @ApiResponse(userResponse.changeProfilePictureOkResponse)
   @ApiResponse(userResponse.changeProfilePictureBadResponse)
+  @UseGuards(JwtAuthGuard)
   uploadImage(
     @Param('id', new ParseUUIDPipe()) id: string,
     @UploadedFile() file: Express.Multer.File,
@@ -78,6 +82,7 @@ export class UserController {
   @UseInterceptors(FileInterceptor('file'))
   @ApiResponse(userResponse.updateProfilePictureOkResponse)
   @ApiResponse(userResponse.updateProfilePictureBadResponse)
+  @UseGuards(JwtAuthGuard)
   updateImage(
     @Param('id', new ParseUUIDPipe()) id: string,
     @UploadedFile() file: Express.Multer.File,
@@ -88,6 +93,7 @@ export class UserController {
   @Delete('profile/upload/:id')
   @ApiResponse(userResponse.removeProfilePictureOkResponse)
   @ApiResponse(userResponse.removeProfilePictureBadResponse)
+  @UseGuards(JwtAuthGuard)
   removeImage(@Param('id', new ParseUUIDPipe()) id: string) {
     return this.userService.removeImage(id);
   }

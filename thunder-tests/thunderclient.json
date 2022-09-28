@@ -27,12 +27,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-08-24T02:34:32.357Z",
-    "modified": "2022-09-27T16:02:05.116Z",
+    "modified": "2022-09-21T23:27:56.944Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDI5NDQ4NSwiZXhwIjoxNjY0ODk5Mjg1fQ.YwVJ4HvrHnHt_--t6-M-O7G_cDPBBASww-tRGHZ2_28"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2MzgwMjg0NywiZXhwIjoxNjYzODAyOTA3fQ.09fEE3E5mHxbMNPdsBoC2urgdb51vORfI8QGKG9z7HQ"
     },
     "tests": []
   },
@@ -305,12 +305,12 @@
     "method": "POST",
     "sortNum": 180000,
     "created": "2022-08-27T13:34:56.847Z",
-    "modified": "2022-08-27T13:39:58.828Z",
+    "modified": "2022-09-13T00:26:03.476Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfo\": \"1e53f941-67c0-4757-84a4-cc722ceef17a\"\n}",
+      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfoId\": \"1e53f941-67c0-4757-84a4-cc722ceef17a\"\n}",
       "form": []
     },
     "tests": []
@@ -324,9 +324,13 @@
     "method": "GET",
     "sortNum": 190000,
     "created": "2022-08-27T13:40:35.012Z",
-    "modified": "2022-08-27T13:40:49.285Z",
+    "modified": "2022-09-28T22:16:16.044Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDQwMzM1MiwiZXhwIjoxNjY1MDA4MTUyfQ.jOJ7aUS5cPlrcRLQ94seqL0HhZ1b5r4L3IUDzbbVzxE"
+    },
     "tests": []
   },
   {
@@ -649,11 +653,11 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
     "name": "Get all by user",
-    "url": "{{base_url}}/{{points_dir}}/by-user/486c9dbb-d673-40ed-81dc-e2637dbab731",
+    "url": "{{base_url}}/{{points_dir}}/486c9dbb-d673-40ed-81dc-e2637dbab731",
     "method": "GET",
     "sortNum": 340000,
     "created": "2022-08-31T22:48:46.152Z",
-    "modified": "2022-09-01T23:16:56.868Z",
+    "modified": "2022-09-12T23:27:25.046Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -663,24 +667,28 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
     "name": "Update",
-    "url": "",
-    "method": "GET",
+    "url": "{{base_url}}/{{points_dir}}/",
+    "method": "PATCH",
     "sortNum": 350000,
     "created": "2022-08-31T22:49:50.004Z",
-    "modified": "2022-08-31T22:49:50.004Z",
-    "headers": []
+    "modified": "2022-09-12T23:21:52.955Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   },
   {
     "_id": "60bbce0d-5cbf-4f08-a84d-eefc4cbe578b",
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
     "name": "Delete",
-    "url": "",
-    "method": "GET",
+    "url": "{{base_url}}/{{points_dir}}/",
+    "method": "DELETE",
     "sortNum": 360000,
     "created": "2022-08-31T22:49:55.407Z",
-    "modified": "2022-08-31T22:49:55.408Z",
-    "headers": []
+    "modified": "2022-09-12T23:26:38.435Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   },
   {
     "_id": "e3c33a85-bc6e-4e62-8b01-029d1baf452f",
@@ -722,15 +730,15 @@
     "tests": []
   },
   {
-    "_id": "7525cf29-52cd-44ce-910c-e3f122d12e08",
+    "_id": "8b9f58d2-0a90-4dfe-baa0-f01ec83db282",
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
-    "containerId": "7889febd-2797-4ec0-98ac-a76673cb9b20",
+    "containerId": "6b3a65ff-f10f-401c-9ee9-e7e223356e57",
     "name": "Login",
     "url": "{{base_url}}/{{auth_dir}}/login",
     "method": "POST",
     "sortNum": 370000,
-    "created": "2022-09-27T16:00:18.579Z",
-    "modified": "2022-09-27T16:01:24.822Z",
+    "created": "2022-09-19T21:48:44.017Z",
+    "modified": "2022-09-28T22:15:52.989Z",
     "headers": [],
     "params": [],
     "body": {
