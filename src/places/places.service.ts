@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CommercialInfoService } from 'src/commercial-info/commercial-info.service';
 import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreatePlaceDto } from './dto/create-place.dto';
 import { UpdatePlaceDto } from './dto/update-place.dto';
 import { Place } from './entities/place.entity';
@@ -16,7 +16,7 @@ export class PlacesService {
     private readonly commercialInfoService: CommercialInfoService,
   ) {}
 
-  async create(createPlaceDto: CreatePlaceDto) {
+  async create(createPlaceDto: CreatePlaceDto): Promise<Place> {
     try {
       let commercialInfo: CommercialInfo;
 
@@ -46,15 +46,15 @@ export class PlacesService {
     }
   }
 
-  findAll() {
+  findAll(): Promise<Array<Place>> {
     return this.placesRepository.find();
   }
 
-  findOneById(id: string) {
+  findOneById(id: string): Promise<Place> {
     return this.placesRepository.findOne(id);
   }
 
-  async findAllByCommercialInfo(idCommInfo: string) {
+  async findAllByCommercialInfo(idCommInfo: string): Promise<Array<Place>> {
     const commercialInfo = await this.commercialInfoService.findOne(idCommInfo);
 
     if (!commercialInfo)
@@ -70,7 +70,7 @@ export class PlacesService {
     });
   }
 
-  update(id: string, updatePlaceDto: UpdatePlaceDto) {
+  update(id: string, updatePlaceDto: UpdatePlaceDto): Promise<UpdateResult> {
     try {
       return this.placesRepository.update(id, { ...updatePlaceDto });
     } catch (error) {
@@ -78,7 +78,7 @@ export class PlacesService {
     }
   }
 
-  remove(id: string) {
+  remove(id: string): Promise<DeleteResult> {
     try {
       return this.placesRepository.delete(id);
     } catch (error) {

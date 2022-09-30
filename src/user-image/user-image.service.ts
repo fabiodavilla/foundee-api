@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { toBase64 } from 'src/utils/base64';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { UserImage } from './entities/user-image.entity';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class UserImageService {
     private readonly userImageRepository: Repository<UserImage>,
   ) {}
 
-  create(user: User, file: Express.Multer.File) {
+  create(user: User, file: Express.Multer.File): Promise<UserImage> {
     try {
       const newImage = new UserImage();
       newImage.id = user;
@@ -24,11 +24,11 @@ export class UserImageService {
     }
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<UserImage> {
     return this.userImageRepository.findOne(id);
   }
 
-  async update(user: User, file: Express.Multer.File) {
+  async update(user: User, file: Express.Multer.File): Promise<UpdateResult> {
     try {
       const image = await this.userImageRepository.find({
         where: { id: user.id },
@@ -42,7 +42,7 @@ export class UserImageService {
     }
   }
 
-  async remove(user: User) {
+  async remove(user: User): Promise<DeleteResult> {
     const image = await this.userImageRepository.findOne(user.id);
     image.id = user;
 

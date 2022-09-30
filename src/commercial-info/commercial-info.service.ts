@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from 'src/user/user.service';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateCommercialInfoDto } from './dto/create-commercial-info.dto';
 import { UpdateCommercialInfoDto } from './dto/update-commercial-info.dto';
 import { CommercialInfo } from './entities/commercial-info.entity';
@@ -15,7 +15,9 @@ export class CommercialInfoService {
     private readonly userService: UserService,
   ) {}
 
-  async create(createCommercialInfoDto: CreateCommercialInfoDto) {
+  async create(
+    createCommercialInfoDto: CreateCommercialInfoDto,
+  ): Promise<CommercialInfo> {
     const user = await this.userService.findOneById(
       createCommercialInfoDto.idUser,
     );
@@ -37,15 +39,15 @@ export class CommercialInfoService {
     return this.commercialInfoRepository.save(commercialInfo);
   }
 
-  findAll() {
+  findAll(): Promise<Array<CommercialInfo>> {
     return this.commercialInfoRepository.find();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<CommercialInfo> {
     return this.commercialInfoRepository.findOne(id);
   }
 
-  findAllByUser(idUser: string) {
+  findAllByUser(idUser: string): Promise<Array<CommercialInfo>> {
     const user = this.userService.findOneById(idUser);
 
     return this.commercialInfoRepository.find({
@@ -55,7 +57,10 @@ export class CommercialInfoService {
     });
   }
 
-  update(id: string, updateCommercialInfoDto: UpdateCommercialInfoDto) {
+  update(
+    id: string,
+    updateCommercialInfoDto: UpdateCommercialInfoDto,
+  ): Promise<UpdateResult> {
     try {
       return this.commercialInfoRepository.update(id, {
         ...updateCommercialInfoDto,
@@ -65,7 +70,7 @@ export class CommercialInfoService {
     }
   }
 
-  remove(id: string) {
+  remove(id: string): Promise<DeleteResult> {
     try {
       return this.commercialInfoRepository.delete(id);
     } catch (error) {

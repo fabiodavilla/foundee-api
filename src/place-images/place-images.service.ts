@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlacesService } from 'src/places/places.service';
 import { toBase64 } from 'src/utils/base64';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { CreatePlaceImageDto } from './dto/create-place-image.dto';
 import { PlaceImage } from './entities/place-image.entity';
 
@@ -18,7 +18,7 @@ export class PlaceImagesService {
   async create(
     createPlaceImageDto: CreatePlaceImageDto,
     file: Express.Multer.File,
-  ) {
+  ): Promise<PlaceImage> {
     const place = await this.placesService.findOneById(
       createPlaceImageDto.idPlace,
     );
@@ -37,7 +37,7 @@ export class PlaceImagesService {
     return this.placeImagesRepository.save(placeImage);
   }
 
-  findAllByPlaceId(idPlace: string) {
+  findAllByPlaceId(idPlace: string): Promise<Array<PlaceImage>> {
     const place = this.placesService.findOneById(idPlace);
 
     return this.placeImagesRepository.find({
@@ -45,11 +45,11 @@ export class PlaceImagesService {
     });
   }
 
-  findOneById(id: string) {
+  findOneById(id: string): Promise<PlaceImage> {
     return this.placeImagesRepository.findOne(id);
   }
 
-  remove(id: string) {
+  remove(id: string): Promise<DeleteResult> {
     return this.placeImagesRepository.delete(id);
   }
 }

@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlacesService } from 'src/places/places.service';
 import { UserService } from 'src/user/user.service';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { Point } from './entities/point.entity';
@@ -18,7 +18,7 @@ export class PointService {
     private readonly userService: UserService,
   ) {}
 
-  async create(createPointDto: CreatePointDto) {
+  async create(createPointDto: CreatePointDto): Promise<Point> {
     const place = await this.placeService.findOneById(createPointDto.idPlace);
     const user = await this.userService.findOneById(createPointDto.idUser);
 
@@ -44,7 +44,7 @@ export class PointService {
     lonDown: number,
     latUp: number,
     lonUp: number,
-  ) {
+  ): Promise<Array<Point>> {
     const res = await this.pointRepository.find({
       where: {
         latitude: { $gt: latDown, $lt: latUp },
@@ -55,7 +55,7 @@ export class PointService {
     return res;
   }
 
-  async findAllByUser(idUser: string) {
+  async findAllByUser(idUser: string): Promise<Array<Point>> {
     const user = await this.userService.findOneById(idUser);
 
     if (!user)
@@ -69,7 +69,11 @@ export class PointService {
     });
   }
 
-  async update(id: string, idUser: string, updatePointDto: UpdatePointDto) {
+  async update(
+    id: string,
+    idUser: string,
+    updatePointDto: UpdatePointDto,
+  ): Promise<UpdateResult> {
     const user = await this.userService.findOneById(idUser);
 
     if (!user)
@@ -81,7 +85,7 @@ export class PointService {
     return this.pointRepository.update(id, { ...updatePointDto });
   }
 
-  async remove(id: string, idUser: string) {
+  async remove(id: string, idUser: string): Promise<DeleteResult> {
     const user = await this.userService.findOneById(idUser);
 
     if (!user)

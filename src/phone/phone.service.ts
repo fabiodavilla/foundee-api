@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from 'src/user/user.service';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreatePhoneDto } from './dto/create-phone.dto';
 import { UpdatePhoneDto } from './dto/update-phone.dto';
 import { Phone } from './entities/phone.entity';
@@ -15,7 +15,7 @@ export class PhoneService {
     private readonly userService: UserService,
   ) {}
 
-  async create(id: string, createPhoneDto: CreatePhoneDto) {
+  async create(id: string, createPhoneDto: CreatePhoneDto): Promise<Phone> {
     try {
       const newPhone = new Phone();
       const user = await this.userService.findOneById(id);
@@ -31,15 +31,15 @@ export class PhoneService {
     }
   }
 
-  findAll() {
+  findAll(): Promise<Array<Phone>> {
     return this.phoneRepository.find();
   }
 
-  findOne(id: string) {
+  findOne(id: string): Promise<Phone> {
     return this.phoneRepository.findOne(id);
   }
 
-  findAllByIdUser(idUser: string) {
+  findAllByIdUser(idUser: string): Promise<Array<Phone>> {
     const user = this.userService.findOneById(idUser);
 
     return this.phoneRepository.find({
@@ -49,11 +49,14 @@ export class PhoneService {
     });
   }
 
-  async update(id: string, updatePhoneDto: UpdatePhoneDto) {
+  async update(
+    id: string,
+    updatePhoneDto: UpdatePhoneDto,
+  ): Promise<UpdateResult> {
     return this.phoneRepository.update(id, { ...updatePhoneDto });
   }
 
-  remove(id: string) {
+  remove(id: string): Promise<DeleteResult> {
     return this.phoneRepository.delete(id);
   }
 }

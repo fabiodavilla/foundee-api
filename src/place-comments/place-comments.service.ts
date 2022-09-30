@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlacesService } from 'src/places/places.service';
 import { UserService } from 'src/user/user.service';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreatePlaceCommentDto } from './dto/create-place-comment.dto';
 import { UpdatePlaceCommentDto } from './dto/update-place-comment.dto';
 import { PlaceComment } from './entities/place-comment.entity';
@@ -18,7 +18,9 @@ export class PlaceCommentsService {
     private readonly userService: UserService,
   ) {}
 
-  async create(createPlaceCommentDto: CreatePlaceCommentDto) {
+  async create(
+    createPlaceCommentDto: CreatePlaceCommentDto,
+  ): Promise<PlaceComment> {
     try {
       if (!createPlaceCommentDto.idPlace || !createPlaceCommentDto.idUser)
         throw new HttpException(
@@ -52,11 +54,11 @@ export class PlaceCommentsService {
     }
   }
 
-  findOneById(id: string) {
+  findOneById(id: string): Promise<PlaceComment> {
     return this.placeCommentRepository.findOne(id);
   }
 
-  async findAllByPlaceId(idPlace: string) {
+  async findAllByPlaceId(idPlace: string): Promise<Array<PlaceComment>> {
     const place = await this.placeService.findOneById(idPlace);
 
     if (!place)
@@ -70,7 +72,7 @@ export class PlaceCommentsService {
     });
   }
 
-  async findAllByUser(idUser: string) {
+  async findAllByUser(idUser: string): Promise<Array<PlaceComment>> {
     const user = await this.userService.findOneById(idUser);
 
     if (!user)
@@ -90,7 +92,7 @@ export class PlaceCommentsService {
     id: string,
     idUser: string,
     updatePlaceCommentDto: UpdatePlaceCommentDto,
-  ) {
+  ): Promise<UpdateResult> {
     const comment = await this.placeCommentRepository.findOne({
       where: { id },
       relations: ['user'],
@@ -105,7 +107,7 @@ export class PlaceCommentsService {
     return this.placeCommentRepository.update(id, { ...updatePlaceCommentDto });
   }
 
-  async remove(id: string, idUser: string) {
+  async remove(id: string, idUser: string): Promise<DeleteResult> {
     const comment = await this.placeCommentRepository.findOne({
       where: { id },
       relations: ['user'],

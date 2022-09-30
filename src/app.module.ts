@@ -46,7 +46,7 @@ import { Point } from './point/entities/point.entity';
         UserImage,
       ],
       synchronize: process.env.DATABASE_SYNC,
-      logging: 'all',
+      logging: process.env.DATABASE_LOG,
     }),
     TypeOrmModule.forRoot({
       type: 'mongodb',
@@ -56,7 +56,7 @@ import { Point } from './point/entities/point.entity';
       database: process.env.MONGODB_NAME,
       entities: [Point],
       synchronize: process.env.MONGODB_SYNC,
-      logging: 'all',
+      logging: process.env.MONGODB_LOG,
     }),
     UserModule,
     PlacesModule,

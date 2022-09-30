@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserImageService } from 'src/user-image/user-image.service';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { hashPassword } from './encrypt';
@@ -17,7 +17,7 @@ export class UserService {
   ) {}
 
   // Criar usuário com o tipo definido
-  async create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     try {
       const user = this.usersRepository.create(createUserDto);
       user.dateBirthday = new Date(createUserDto.date);
@@ -29,23 +29,23 @@ export class UserService {
   }
 
   // Ler todos os usuários
-  findAll() {
+  findAll(): Promise<Array<User>> {
     return this.usersRepository.find();
   }
 
   // Ler um usuário pelo ID
-  findOneById(id: string) {
+  findOneById(id: string): Promise<User> {
     return this.usersRepository.findOne(id);
   }
 
-  findOneByEmail(email: string) {
+  findOneByEmail(email: string): Promise<User> {
     return this.usersRepository.findOne({
       where: { email },
     });
   }
 
   // Atualizar usuário com o tipo definido e o ID
-  update(id: string, updateUserDto: UpdateUserDto) {
+  update(id: string, updateUserDto: UpdateUserDto): Promise<UpdateResult> {
     try {
       return this.usersRepository.update(id, { ...updateUserDto });
     } catch (error) {
@@ -54,7 +54,7 @@ export class UserService {
   }
 
   // Deletar usuário pelo ID
-  remove(id: string) {
+  remove(id: string): Promise<DeleteResult> {
     try {
       return this.usersRepository.delete(id);
     } catch (error) {
@@ -63,7 +63,7 @@ export class UserService {
   }
 
   // Upload de imagem
-  async uploadImage(id: string, file: Express.Multer.File) {
+  async uploadImage(id: string, file: Express.Multer.File): Promise<boolean> {
     try {
       const user = await this.findOneById(id);
 
@@ -85,7 +85,7 @@ export class UserService {
   }
 
   // Update de imagem
-  async updateImage(id: string, file: Express.Multer.File) {
+  async updateImage(id: string, file: Express.Multer.File): Promise<boolean> {
     try {
       const user = await this.findOneById(id);
       const image = await this.usersRepository.findOne(user);
@@ -105,7 +105,7 @@ export class UserService {
     }
   }
 
-  async removeImage(id: string) {
+  async removeImage(id: string): Promise<boolean> {
     try {
       const user = await this.findOneById(id);
 
