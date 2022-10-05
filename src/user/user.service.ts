@@ -35,7 +35,9 @@ export class UserService {
 
   // Ler um usuário pelo ID
   findOneById(id: string): Promise<User> {
-    return this.usersRepository.findOne(id);
+    return this.usersRepository.findOne(id, {
+      relations: ['commercialInfo', 'phones', 'placeComments'],
+    });
   }
 
   findOneByEmail(email: string): Promise<User> {

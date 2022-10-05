@@ -24,10 +24,6 @@ export class UserImageService {
     }
   }
 
-  findOne(id: string): Promise<UserImage> {
-    return this.userImageRepository.findOne(id);
-  }
-
   async update(user: User, file: Express.Multer.File): Promise<UpdateResult> {
     try {
       const image = await this.userImageRepository.find({

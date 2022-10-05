@@ -27,12 +27,12 @@
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-08-24T02:34:32.357Z",
-    "modified": "2022-09-21T23:27:56.944Z",
+    "modified": "2022-10-01T01:50:30.092Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2MzgwMjg0NywiZXhwIjoxNjYzODAyOTA3fQ.09fEE3E5mHxbMNPdsBoC2urgdb51vORfI8QGKG9z7HQ"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
     },
     "tests": []
   },
@@ -41,13 +41,17 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "9c226d1a-4607-4f17-a285-9dfe067fa673",
     "name": "Get one by id",
-    "url": "{{base_url}}/{{user_dir}}/c409ef93-ff5b-46ae-8ee4-2a5292c5e497",
+    "url": "{{base_url}}/{{user_dir}}/1da59ee5-475c-4b08-8fa7-2d23804cb373",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-08-24T02:37:22.678Z",
-    "modified": "2022-08-24T02:37:35.245Z",
+    "modified": "2022-10-01T01:59:19.819Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
+    },
     "tests": []
   },
   {
@@ -136,9 +140,13 @@
     "method": "GET",
     "sortNum": 80000,
     "created": "2022-08-25T00:48:50.656Z",
-    "modified": "2022-08-25T00:48:52.912Z",
+    "modified": "2022-10-01T02:17:27.298Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
+    },
     "tests": []
   },
   {
@@ -211,13 +219,17 @@
     "method": "POST",
     "sortNum": 110000,
     "created": "2022-08-27T11:20:03.332Z",
-    "modified": "2022-08-27T13:28:09.760Z",
+    "modified": "2022-10-02T20:25:30.195Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"idUser\": \"486c9dbb-d673-40ed-81dc-e2637dbab731\",\n  \"registry\": \"55555555555\"\n}",
+      "raw": "{\n  \"idUser\": \"1da59ee5-475c-4b08-8fa7-2d23804cb373\",\n  \"registry\": \"55555555555\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
     },
     "tests": []
   },
@@ -230,9 +242,13 @@
     "method": "GET",
     "sortNum": 120000,
     "created": "2022-08-27T11:29:44.419Z",
-    "modified": "2022-08-27T11:30:00.546Z",
+    "modified": "2022-10-02T20:25:10.669Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
+    },
     "tests": []
   },
   {
@@ -240,13 +256,17 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "faeb8cbe-e623-4c76-b4f0-d188e440a175",
     "name": "Get one by id",
-    "url": "{{base_url}}/{{commercial_dir}}/e39f7262-367c-409b-a1c3-31203a5a0921",
+    "url": "{{base_url}}/{{commercial_dir}}/f4b6e45a-2ac2-4f7b-83a2-b88158b07697",
     "method": "GET",
     "sortNum": 130000,
     "created": "2022-08-27T11:30:37.869Z",
-    "modified": "2022-08-27T11:30:50.886Z",
+    "modified": "2022-10-02T21:47:56.438Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
+    },
     "tests": []
   },
   {
@@ -305,13 +325,17 @@
     "method": "POST",
     "sortNum": 180000,
     "created": "2022-08-27T13:34:56.847Z",
-    "modified": "2022-09-13T00:26:03.476Z",
+    "modified": "2022-10-05T01:47:40.069Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfoId\": \"1e53f941-67c0-4757-84a4-cc722ceef17a\"\n}",
+      "raw": "{\n  \"name\": \"Bar do zé\",\n  \"description\": \"é o bar do seu zé\",\n  \"status\": 1,\n  \"placeType\": 1,\n  \"commercialInfoId\": \"f4b6e45a-2ac2-4f7b-83a2-b88158b07697\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDQwMzM1MiwiZXhwIjoxNjY1MDA4MTUyfQ.jOJ7aUS5cPlrcRLQ94seqL0HhZ1b5r4L3IUDzbbVzxE"
     },
     "tests": []
   },
@@ -338,13 +362,17 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "12371346-382f-4f0a-88ab-1ad86ddab34c",
     "name": "Get on by id",
-    "url": "{{base_url}}/{{place_dir}}/0fdcecf5-065f-492b-8171-e5d2dc727a82",
+    "url": "{{base_url}}/{{place_dir}}/fe0a9124-7515-4cfb-a72b-affb21f18a54",
     "method": "GET",
     "sortNum": 200000,
     "created": "2022-08-27T13:41:22.057Z",
-    "modified": "2022-08-27T13:41:36.034Z",
+    "modified": "2022-10-05T01:48:02.925Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDQwMzM1MiwiZXhwIjoxNjY1MDA4MTUyfQ.jOJ7aUS5cPlrcRLQ94seqL0HhZ1b5r4L3IUDzbbVzxE"
+    },
     "tests": []
   },
   {
@@ -403,13 +431,17 @@
     "method": "POST",
     "sortNum": 240000,
     "created": "2022-08-29T22:44:55.082Z",
-    "modified": "2022-08-29T22:52:55.651Z",
+    "modified": "2022-10-05T01:48:56.558Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"comment\": \"comentário daora\",\n  \"idUser\": \"486c9dbb-d673-40ed-81dc-e2637dbab731\",\n  \"idPlace\": \"3ca1f546-f869-4f1a-b215-933444245b29\"\n}",
+      "raw": "{\n  \"comment\": \"comentário daora\",\n  \"idUser\": \"1da59ee5-475c-4b08-8fa7-2d23804cb373\",\n  \"idPlace\": \"fe0a9124-7515-4cfb-a72b-affb21f18a53\"\n}",
       "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDQwMzM1MiwiZXhwIjoxNjY1MDA4MTUyfQ.jOJ7aUS5cPlrcRLQ94seqL0HhZ1b5r4L3IUDzbbVzxE"
     },
     "tests": []
   },
@@ -418,13 +450,17 @@
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "c696e839-9ed8-49f3-9440-a8aa34f6e2fb",
     "name": "Get one",
-    "url": "{{base_url}}/{{place_comments_dir}}/d4be68bb-cf7b-4809-a717-b27118c28dde",
+    "url": "{{base_url}}/{{place_comments_dir}}/5dc0d178-9691-4a1e-a0a7-24932930eb7c",
     "method": "GET",
     "sortNum": 250000,
     "created": "2022-08-29T22:53:12.548Z",
-    "modified": "2022-08-29T22:54:34.337Z",
+    "modified": "2022-10-05T01:49:19.808Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDQwMzM1MiwiZXhwIjoxNjY1MDA4MTUyfQ.jOJ7aUS5cPlrcRLQ94seqL0HhZ1b5r4L3IUDzbbVzxE"
+    },
     "tests": []
   },
   {
@@ -614,52 +650,21 @@
     "tests": []
   },
   {
-    "_id": "9b1ee15c-56c5-4150-a3e6-bfa7a9b0ea9b",
-    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
-    "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
-    "name": "Get by location",
-    "url": "{{base_url}}/{{points_dir}}/location?latDown=88&lonDown=0&latUp=100&lonUp=20",
-    "method": "GET",
-    "sortNum": 330000,
-    "created": "2022-08-31T22:48:31.545Z",
-    "modified": "2022-08-31T22:57:13.787Z",
-    "headers": [],
-    "params": [
-      {
-        "name": "latDown",
-        "value": "88",
-        "isPath": false
-      },
-      {
-        "name": "lonDown",
-        "value": "0",
-        "isPath": false
-      },
-      {
-        "name": "latUp",
-        "value": "100",
-        "isPath": false
-      },
-      {
-        "name": "lonUp",
-        "value": "20",
-        "isPath": false
-      }
-    ],
-    "tests": []
-  },
-  {
     "_id": "84b1fe59-5cbc-4bcf-acc0-6cda8f7595fa",
     "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
     "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
     "name": "Get all by user",
-    "url": "{{base_url}}/{{points_dir}}/486c9dbb-d673-40ed-81dc-e2637dbab731",
+    "url": "{{base_url}}/{{points_dir}}/1da59ee5-475c-4b08-8fa7-2d23804cb373",
     "method": "GET",
     "sortNum": 340000,
     "created": "2022-08-31T22:48:46.152Z",
-    "modified": "2022-09-12T23:27:25.046Z",
+    "modified": "2022-10-02T21:49:55.578Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NDU4ODk3MSwiZXhwIjoxNjY1MTkzNzcxfQ.gL_euEnBe591Za4urHZ8-FfZFnEAZxJMvHTE98j2YDI"
+    },
     "tests": []
   },
   {
@@ -746,6 +751,39 @@
       "raw": "{\n  \"email\": \"fabio@email.com\",\n  \"password\": \"123\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "df782abd-75f9-4273-99ba-730c1e84100b",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "7889febd-2797-4ec0-98ac-a76673cb9b20",
+    "name": "Login",
+    "url": "{{base_url}}/{{auth_dir}}/login",
+    "method": "POST",
+    "sortNum": 380000,
+    "created": "2022-10-01T01:44:55.652Z",
+    "modified": "2022-10-01T01:49:20.390Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"fabio@email.com\",\n  \"password\": \"123\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bdc46e98-7666-4ac6-a0c6-caaff432e268",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
+    "name": "Get one by id",
+    "url": "{{base_url}}/{{points_dir}}/",
+    "method": "GET",
+    "sortNum": 325000,
+    "created": "2022-10-02T21:49:19.907Z",
+    "modified": "2022-10-02T21:49:34.823Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
