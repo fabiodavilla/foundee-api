@@ -1,9 +1,9 @@
 == necessário para finalizar
 checar obrigação de cada rota (commercial info precisa ter usuário)
 
-rever os findOne pq trás um valor padrão mesmo sem informar nada
-
 ver resultados com informações delicadas
 
 == otimizações não obrigatórias
 implementar domínio rico nas entidades
+
+implementar migration - https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/
