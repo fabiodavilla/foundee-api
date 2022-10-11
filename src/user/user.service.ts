@@ -47,18 +47,21 @@ export class UserService {
   }
 
   // Atualizar usuário com o tipo definido e o ID
-  update(id: string, updateUserDto: UpdateUserDto): Promise<UpdateResult> {
+  async update(
+    id: string,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UpdateResult> {
     try {
-      return this.usersRepository.update(id, { ...updateUserDto });
+      return await this.usersRepository.update(id, { ...updateUserDto });
     } catch (error) {
       throw new Error(error);
     }
   }
 
   // Deletar usuário pelo ID
-  remove(id: string): Promise<DeleteResult> {
+  async remove(id: string): Promise<DeleteResult> {
     try {
-      return this.usersRepository.delete(id);
+      return await this.usersRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

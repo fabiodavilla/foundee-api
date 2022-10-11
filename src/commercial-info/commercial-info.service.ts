@@ -57,12 +57,12 @@ export class CommercialInfoService {
     });
   }
 
-  update(
+  async update(
     id: string,
     updateCommercialInfoDto: UpdateCommercialInfoDto,
   ): Promise<UpdateResult> {
     try {
-      return this.commercialInfoRepository.update(id, {
+      return await this.commercialInfoRepository.update(id, {
         ...updateCommercialInfoDto,
       });
     } catch (error) {
@@ -70,9 +70,9 @@ export class CommercialInfoService {
     }
   }
 
-  remove(id: string): Promise<DeleteResult> {
+  async remove(id: string): Promise<DeleteResult> {
     try {
-      return this.commercialInfoRepository.delete(id);
+      return await this.commercialInfoRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }

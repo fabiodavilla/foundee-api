@@ -42,6 +42,6 @@ export class UserImageService {
     const image = await this.userImageRepository.findOne(user.id);
     image.id = user;
 
-    return await this.userImageRepository.delete(image);
+    return this.userImageRepository.delete(image);
   }
 }

@@ -70,17 +70,20 @@ export class PlacesService {
     });
   }
 
-  update(id: string, updatePlaceDto: UpdatePlaceDto): Promise<UpdateResult> {
+  async update(
+    id: string,
+    updatePlaceDto: UpdatePlaceDto,
+  ): Promise<UpdateResult> {
     try {
-      return this.placesRepository.update(id, { ...updatePlaceDto });
+      return await this.placesRepository.update(id, { ...updatePlaceDto });
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  remove(id: string): Promise<DeleteResult> {
+  async remove(id: string): Promise<DeleteResult> {
     try {
-      return this.placesRepository.delete(id);
+      return await this.placesRepository.delete(id);
     } catch (error) {
       throw new Error(error);
     }
