@@ -55,7 +55,7 @@ export class PlaceCommentsService {
   }
 
   findOneById(id: string): Promise<PlaceComment> {
-    return this.placeCommentRepository.findOne(id);
+    return this.placeCommentRepository.findOneBy({ id });
   }
 
   async findAllByPlaceId(idPlace: string): Promise<Array<PlaceComment>> {

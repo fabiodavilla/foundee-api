@@ -36,15 +36,15 @@ export class PhoneService {
   }
 
   findOne(id: string): Promise<Phone> {
-    return this.phoneRepository.findOne(id);
+    return this.phoneRepository.findOneBy({ id });
   }
 
-  findAllByIdUser(idUser: string): Promise<Array<Phone>> {
-    const user = this.userService.findOneById(idUser);
+  async findAllByIdUser(idUser: string): Promise<Array<Phone>> {
+    const user = await this.userService.findOneById(idUser);
 
     return this.phoneRepository.find({
       where: {
-        user: user,
+        user,
       },
     });
   }

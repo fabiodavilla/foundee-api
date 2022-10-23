@@ -51,7 +51,7 @@ export class PlacesService {
   }
 
   findOneById(id: string): Promise<Place> {
-    return this.placesRepository.findOne(id);
+    return this.placesRepository.findOneBy({ id });
   }
 
   async findAllByCommercialInfo(idCommInfo: string): Promise<Array<Place>> {

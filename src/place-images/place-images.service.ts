@@ -37,16 +37,14 @@ export class PlaceImagesService {
     return this.placeImagesRepository.save(placeImage);
   }
 
-  findAllByPlaceId(idPlace: string): Promise<Array<PlaceImage>> {
-    const place = this.placesService.findOneById(idPlace);
+  async findAllByPlaceId(idPlace: string): Promise<Array<PlaceImage>> {
+    const place = await this.placesService.findOneById(idPlace);
 
-    return this.placeImagesRepository.find({
-      where: { place },
-    });
+    return this.placeImagesRepository.find({ where: { place } });
   }
 
   findOneById(id: string): Promise<PlaceImage> {
-    return this.placeImagesRepository.findOne(id);
+    return this.placeImagesRepository.findOneBy({ id });
   }
 
   remove(id: string): Promise<DeleteResult> {

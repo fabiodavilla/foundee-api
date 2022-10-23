@@ -5,7 +5,7 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-08-24T02:29:33.735Z",
-    "modified": "2022-09-27T16:00:40.906Z",
+    "modified": "2022-10-18T15:04:16.852Z",
     "data": [
       {
         "name": "base_url",
@@ -42,6 +42,10 @@
       {
         "name": "auth_dir",
         "value": "auth"
+      },
+      {
+        "name": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NjEwNTQzOCwiZXhwIjoxNjY2NzEwMjM4fQ.w3qODDayzU_oepU5tSb5ZEnjL3sot4NJ_z3jgasTxoM"
       }
     ]
   }

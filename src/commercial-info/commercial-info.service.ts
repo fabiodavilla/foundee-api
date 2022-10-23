@@ -44,11 +44,11 @@ export class CommercialInfoService {
   }
 
   findOne(id: string): Promise<CommercialInfo> {
-    return this.commercialInfoRepository.findOne(id);
+    return this.commercialInfoRepository.findOneBy({ id });
   }
 
-  findAllByUser(idUser: string): Promise<Array<CommercialInfo>> {
-    const user = this.userService.findOneById(idUser);
+  async findAllByUser(idUser: string): Promise<Array<CommercialInfo>> {
+    const user = await this.userService.findOneById(idUser);
 
     return this.commercialInfoRepository.find({
       where: {

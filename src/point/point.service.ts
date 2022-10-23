@@ -2,7 +2,13 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlacesService } from 'src/places/places.service';
 import { UserService } from 'src/user/user.service';
-import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import {
+  DeleteResult,
+  LessThan,
+  MoreThan,
+  Repository,
+  UpdateResult,
+} from 'typeorm';
 import { CreatePointDto } from './dto/create-point.dto';
 import { UpdatePointDto } from './dto/update-point.dto';
 import { Point } from './entities/point.entity';
@@ -47,8 +53,10 @@ export class PointService {
   ): Promise<Array<Point>> {
     const res = await this.pointRepository.find({
       where: {
-        latitude: { $gt: latDown, $lt: latUp },
-        longitude: { $gt: lonDown, $lt: lonUp },
+        latitude: MoreThan(latDown) && LessThan(latUp),
+        // latitude: { $gt: latDown, $lt: latUp },
+        longitude: MoreThan(lonDown) && LessThan(lonUp),
+        // longitude: { $gt: lonDown, $lt: lonUp },
       },
     });
 

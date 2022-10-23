@@ -26,9 +26,7 @@ export class UserImageService {
 
   async update(user: User, file: Express.Multer.File): Promise<UpdateResult> {
     try {
-      const image = await this.userImageRepository.find({
-        where: { id: user.id },
-      });
+      const image = await this.userImageRepository.findOneBy({ id: user });
 
       image[0].imageString = toBase64(file);
 
@@ -39,7 +37,7 @@ export class UserImageService {
   }
 
   async remove(user: User): Promise<DeleteResult> {
-    const image = await this.userImageRepository.findOne(user.id);
+    const image = await this.userImageRepository.findOneBy({ id: user });
     image.id = user;
 
     return this.userImageRepository.delete(image);

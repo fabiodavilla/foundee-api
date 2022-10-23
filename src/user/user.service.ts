@@ -35,9 +35,7 @@ export class UserService {
 
   // Ler um usuário pelo ID
   findOneById(id: string): Promise<User> {
-    return this.usersRepository.findOne(id, {
-      relations: ['commercialInfo', 'phones', 'placeComments'],
-    });
+    return this.usersRepository.findOneBy({ id });
   }
 
   findOneByEmail(email: string): Promise<User> {
@@ -93,7 +91,7 @@ export class UserService {
   async updateImage(id: string, file: Express.Multer.File): Promise<boolean> {
     try {
       const user = await this.findOneById(id);
-      const image = await this.usersRepository.findOne(user);
+      const image = await this.usersRepository.findOneBy(user);
 
       if (user && image) {
         const uploaded = await this.userImageService.update(user, file);
