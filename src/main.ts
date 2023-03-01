@@ -18,7 +18,7 @@ import { AppModule } from './app.module';
     .setVersion('0.0.1')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
 
   // Validations
   app.useGlobalPipes(new ValidationPipe());

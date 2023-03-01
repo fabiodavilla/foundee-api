@@ -4,7 +4,6 @@ import { UserImageService } from 'src/user-image/user-image.service';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { hashPassword } from './encrypt';
 import { User } from './entities/user.entity';
 
 @Injectable()
@@ -21,7 +20,6 @@ export class UserService {
     try {
       const user = this.usersRepository.create(createUserDto);
       user.dateBirthday = new Date(createUserDto.date);
-      user.password = hashPassword(user.password);
       return this.usersRepository.save(user);
     } catch (error) {
       throw new Error(error);

@@ -44,6 +44,10 @@
         "value": "auth"
       },
       {
+        "name": "health_dir",
+        "value": "health"
+      },
+      {
         "name": "token",
         "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZhYmlvQGVtYWlsLmNvbSIsImlhdCI6MTY2NjEwNTQzOCwiZXhwIjoxNjY2NzEwMjM4fQ.w3qODDayzU_oepU5tSb5ZEnjL3sot4NJ_z3jgasTxoM"
       }

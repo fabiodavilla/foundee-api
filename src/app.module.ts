@@ -14,7 +14,7 @@ import { HealthModule } from './health/health.module';
 import { UserImageModule } from './user-image/user-image.module';
 import { AuthModule } from './auth/auth.module';
 
-// Postgres Entities
+// Entities
 import { User } from './user/entities/user.entity';
 import { Place } from './places/entities/place.entity';
 import { PlaceImage } from './place-images/entities/place-image.entity';
@@ -22,8 +22,6 @@ import { PlaceComment } from './place-comments/entities/place-comment.entity';
 import { CommercialInfo } from './commercial-info/entities/commercial-info.entity';
 import { Phone } from './phone/entities/phone.entity';
 import { UserImage } from './user-image/entities/user-image.entity';
-
-// Mongo Entities
 import { Point } from './point/entities/point.entity';
 
 @Module({
@@ -44,19 +42,10 @@ import { Point } from './point/entities/point.entity';
         Place,
         Phone,
         UserImage,
+        Point,
       ],
       synchronize: Boolean(process.env.DATABASE_SYNC),
       logging: Boolean(process.env.DATABASE_LOG),
-    }),
-    TypeOrmModule.forRoot({
-      type: 'mongodb',
-      name: process.env.MONGODB_SURNAME,
-      host: process.env.MONGODB_HOST,
-      port: Number(process.env.MONGODB_PORT),
-      database: process.env.MONGODB_NAME,
-      entities: [Point],
-      synchronize: Boolean(process.env.MONGODB_SYNC),
-      logging: Boolean(process.env.MONGODB_LOG),
     }),
     UserModule,
     PlacesModule,

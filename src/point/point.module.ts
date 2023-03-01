@@ -12,7 +12,7 @@ import { PlacesModule } from 'src/places/places.module';
     ConfigModule,
     UserModule,
     PlacesModule,
-    TypeOrmModule.forFeature([Point], 'mongo'),
+    TypeOrmModule.forFeature([Point]),
   ],
   controllers: [PointController],
   providers: [PointService],

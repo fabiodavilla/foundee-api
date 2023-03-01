@@ -12,13 +12,11 @@ Consiste da utilização de ferramentas de desenvolvimento modernas, como:
 
 - Nest.JS
 - PostgresSQL
-- MongoDB
 
 tudo feito pelo Visual Studio Code
 
 [<img src="/assets/nestjs-logo.png" width="80" height="80">](https://nestjs.com/)
 [<img src="/assets/postgres-logo.png" width="80" height="80">](https://www.postgresql.org/)
-[<img src="/assets/mongodb-logo.png" width="80" height="80">](https://www.mongodb.com/)
 [<img src="/assets/vscode-logo.png" width="80" height="80">](https://code.visualstudio.com/)
 
 ## Projeto realizado pela Fatec Ribeirão Preto

@@ -901,5 +901,19 @@
       "bearer": "{{token}}"
     },
     "tests": []
+  },
+  {
+    "_id": "21ac281c-568b-4bf3-8381-7afff28b4638",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "324b746e-8832-4e48-b568-562cf5faa26c",
+    "name": "Status",
+    "url": "{{base_url}}/{{health_dir}}/status",
+    "method": "GET",
+    "sortNum": 390000,
+    "created": "2023-02-27T00:33:56.913Z",
+    "modified": "2023-02-27T00:34:36.406Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

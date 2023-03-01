@@ -10,4 +10,9 @@ export class UserImage {
 
   @Column({ type: 'text', nullable: false })
   imageString: string;
+
+  constructor(id: User, imageString: string) {
+    this.id = id;
+    this.imageString = imageString;
+  }
 }

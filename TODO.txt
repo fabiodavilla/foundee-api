@@ -1,4 +1,2 @@
 == otimizações não obrigatórias
 implementar domínio rico nas entidades
-
-implementar migration - https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/

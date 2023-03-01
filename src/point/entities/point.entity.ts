@@ -1,8 +1,16 @@
-import { Column, Entity, ObjectIdColumn } from 'typeorm';
+import { Place } from 'src/places/entities/place.entity';
+import { User } from 'src/user/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('point')
 export class Point {
-  @ObjectIdColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ type: 'integer' })
@@ -11,12 +19,14 @@ export class Point {
   @Column({ type: 'integer' })
   longitude: number;
 
-  @Column({ type: 'string' })
-  idUser: string;
-
-  @Column({ type: 'string' })
-  idPlace: string;
-
   @Column({ type: 'integer' })
   placeType: number;
+
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
+  idUser: User;
+
+  @OneToOne(() => Place)
+  @JoinColumn({ name: 'id_place', referencedColumnName: 'id' })
+  idPlace: Place;
 }

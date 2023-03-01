@@ -14,9 +14,7 @@ export class UserImageService {
 
   create(user: User, file: Express.Multer.File): Promise<UserImage> {
     try {
-      const newImage = new UserImage();
-      newImage.id = user;
-      newImage.imageString = toBase64(file);
+      const newImage = new UserImage(user, toBase64(file));
 
       return this.userImageRepository.save(newImage);
     } catch (error) {

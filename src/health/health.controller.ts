@@ -21,8 +21,6 @@ export class HealthController {
     private readonly memory: MemoryHealthIndicator,
     private readonly disk: DiskHealthIndicator,
     private readonly db: TypeOrmHealthIndicator,
-    @InjectDataSource('mongo')
-    private readonly mongoConnection: Connection,
     @InjectDataSource()
     private readonly defaultConnection: Connection,
   ) {}
@@ -38,7 +36,6 @@ export class HealthController {
       () => this.db.pingCheck('foundee'),
       () =>
         this.db.pingCheck('postgres', { connection: this.defaultConnection }),
-      () => this.db.pingCheck('mongodb', { connection: this.mongoConnection }),
 
       // Memory check
       () => this.memory.checkHeap('memory heap', 150 * 1024 * 1024),

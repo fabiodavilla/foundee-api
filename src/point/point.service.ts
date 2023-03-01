@@ -16,7 +16,7 @@ import { Point } from './entities/point.entity';
 @Injectable()
 export class PointService {
   constructor(
-    @InjectRepository(Point, 'mongo')
+    @InjectRepository(Point)
     private readonly pointRepository: Repository<Point>,
     @Inject(PlacesService)
     private readonly placeService: PlacesService,
@@ -35,8 +35,8 @@ export class PointService {
       );
 
     const newPoint = new Point();
-    newPoint.idUser = createPointDto.idUser;
-    newPoint.idPlace = createPointDto.idPlace;
+    newPoint.idUser = user;
+    newPoint.idPlace = place;
     newPoint.latitude = createPointDto.latitude;
     newPoint.longitude = createPointDto.longitude;
     newPoint.placeType = createPointDto.placeType;
@@ -73,7 +73,7 @@ export class PointService {
       );
 
     return this.pointRepository.find({
-      where: { idUser: user.id },
+      where: { idUser: user },
     });
   }
 
