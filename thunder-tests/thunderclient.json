@@ -874,12 +874,12 @@
     "method": "POST",
     "sortNum": 380000,
     "created": "2022-10-01T01:44:55.652Z",
-    "modified": "2023-03-01T14:04:58.647Z",
+    "modified": "2023-03-05T03:41:21.331Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"fabio@email.co\",\n  \"password\": \"123\"\n}",
+      "raw": "{\n  \"email\": \"fabio@email.com\",\n  \"password\": \"a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3\"\n}",
       "form": []
     },
     "tests": []
