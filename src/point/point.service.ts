@@ -9,8 +9,6 @@ import {
   Repository,
   UpdateResult,
 } from 'typeorm';
-import { CreatePointDto } from './dto/create-point.dto';
-import { UpdatePointDto } from './dto/update-point.dto';
 import { Point } from './entities/point.entity';
 
 @Injectable()
@@ -18,30 +16,29 @@ export class PointService {
   constructor(
     @InjectRepository(Point)
     private readonly pointRepository: Repository<Point>,
-    @Inject(PlacesService)
-    private readonly placeService: PlacesService,
+    // @Inject(PlacesService)
+    // private readonly placeService: PlacesService,
     @Inject(UserService)
     private readonly userService: UserService,
   ) {}
 
-  async create(createPointDto: CreatePointDto): Promise<Point> {
-    const place = await this.placeService.findOneById(createPointDto.idPlace);
-    const user = await this.userService.findOneById(createPointDto.idUser);
+  async create(point: Point): Promise<Point> {
+    // const place = await this.placeService.findOneById(createPointDto.idPlace);
+    // const user = await this.userService.findOneById(createPointDto.idUser);
 
-    if (!user || !place)
-      throw new HttpException(
-        'User or place not found!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+    // if (!user || !place)
+    //   throw new HttpException(
+    //     'User or place not found!',
+    //     HttpStatus.INTERNAL_SERVER_ERROR,
+    //   );
 
-    const newPoint = new Point();
-    newPoint.idUser = user;
-    newPoint.idPlace = place;
-    newPoint.latitude = createPointDto.latitude;
-    newPoint.longitude = createPointDto.longitude;
-    newPoint.placeType = createPointDto.placeType;
+    // const newPoint = new Point();
+    // newPoint.idUser = user;
+    // // newPoint.idPlace = place;
+    // newPoint.latitude = createPointDto.latitude;
+    // newPoint.longitude = createPointDto.longitude;
+    // // newPoint.placeType = createPointDto.placeType;
 
-    const point = this.pointRepository.create(newPoint);
     return this.pointRepository.save(point);
   }
 
@@ -77,21 +74,21 @@ export class PointService {
     });
   }
 
-  async update(
-    id: string,
-    idUser: string,
-    updatePointDto: UpdatePointDto,
-  ): Promise<UpdateResult> {
-    const user = await this.userService.findOneById(idUser);
+  // async update(
+  //   id: string,
+  //   idUser: string,
+  //   updatePointDto: UpdatePointDto,
+  // ): Promise<UpdateResult> {
+  //   const user = await this.userService.findOneById(idUser);
 
-    if (!user)
-      throw new HttpException(
-        'User not found!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+  //   if (!user)
+  //     throw new HttpException(
+  //       'User not found!',
+  //       HttpStatus.INTERNAL_SERVER_ERROR,
+  //     );
 
-    return this.pointRepository.update(id, { ...updatePointDto });
-  }
+  //   return this.pointRepository.update(id, { ...updatePointDto });
+  // }
 
   async remove(id: string, idUser: string): Promise<DeleteResult> {
     const user = await this.userService.findOneById(idUser);

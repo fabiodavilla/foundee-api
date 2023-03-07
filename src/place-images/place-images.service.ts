@@ -10,38 +10,40 @@ import { PlaceImage } from './entities/place-image.entity';
 export class PlaceImagesService {
   constructor(
     @InjectRepository(PlaceImage)
-    private readonly placeImagesRepository: Repository<PlaceImage>,
-    @Inject(PlacesService)
-    private readonly placesService: PlacesService,
+    private readonly placeImagesRepository: Repository<PlaceImage>, // @Inject(PlacesService) // private readonly placesService: PlacesService,
   ) {}
 
-  async create(
-    createPlaceImageDto: CreatePlaceImageDto,
-    file: Express.Multer.File,
-  ): Promise<PlaceImage> {
-    const place = await this.placesService.findOneById(
-      createPlaceImageDto.idPlace,
-    );
+  // async create(
+  //   createPlaceImageDto: CreatePlaceImageDto,
+  //   file: Express.Multer.File,
+  // ): Promise<PlaceImage> {
+  //   const place = await this.placesService.findOneById(
+  //     createPlaceImageDto.idPlace,
+  //   );
 
-    if (!place)
-      throw new HttpException(
-        'Place not found!',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+  //   if (!place)
+  //     throw new HttpException(
+  //       'Place not found!',
+  //       HttpStatus.INTERNAL_SERVER_ERROR,
+  //     );
 
-    const newPlaceImage = new PlaceImage();
-    newPlaceImage.imageString = toBase64(file);
-    newPlaceImage.place = place;
+  //   const newPlaceImage = new PlaceImage();
+  //   newPlaceImage.imageString = toBase64(file);
+  //   newPlaceImage.place = place;
 
-    const placeImage = this.placeImagesRepository.create(newPlaceImage);
-    return this.placeImagesRepository.save(placeImage);
+  //   const placeImage = this.placeImagesRepository.create(newPlaceImage);
+  //   return this.placeImagesRepository.save(placeImage);
+  // }
+
+  async createMany(placeImages: PlaceImage[]) {
+    return this.placeImagesRepository.save(placeImages);
   }
 
-  async findAllByPlaceId(idPlace: string): Promise<Array<PlaceImage>> {
-    const place = await this.placesService.findOneById(idPlace);
+  // async findAllByPlaceId(idPlace: string): Promise<Array<PlaceImage>> {
+  //   const place = await this.placesService.findOneById(idPlace);
 
-    return this.placeImagesRepository.find({ where: { place } });
-  }
+  //   return this.placeImagesRepository.find({ where: { place } });
+  // }
 
   findOneById(id: string): Promise<PlaceImage> {
     return this.placeImagesRepository.findOneBy({ id });

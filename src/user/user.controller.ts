@@ -44,7 +44,7 @@ export class UserController {
   @ApiResponse(userResponse.getByIdBadResponse)
   @UseGuards(JwtAuthGuard)
   findOneById(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.userService.findOneById(id);
+    return this.userService.findUserById(id);
   }
 
   @Patch(':id')

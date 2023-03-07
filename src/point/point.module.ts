@@ -11,10 +11,11 @@ import { PlacesModule } from 'src/places/places.module';
   imports: [
     ConfigModule,
     UserModule,
-    PlacesModule,
+    // PlacesModule,
     TypeOrmModule.forFeature([Point]),
   ],
   controllers: [PointController],
   providers: [PointService],
+  exports: [PointService],
 })
 export class PointModule {}

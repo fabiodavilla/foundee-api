@@ -12,23 +12,18 @@ import { createResponse } from '../CommonResponse';
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const response = context.switchToHttp().getResponse();
+    const { statusCode } = context.switchToHttp().getResponse();
 
     return next.handle().pipe(
-      map((data) => createResponse(true, response.statusCode, '', data)),
+      map((data) => createResponse(true, statusCode, '', data)),
       catchError((error) => {
         if (error instanceof HttpException) {
           return Promise.resolve(
-            createResponse(false, response.statusCode, error.message, null),
+            createResponse(false, statusCode, error.message, null),
           );
         }
         return Promise.resolve(
-          createResponse(
-            false,
-            response.statusCode,
-            'Internal server error',
-            null,
-          ),
+          createResponse(false, statusCode, 'Internal server error', null),
         );
       }),
     );

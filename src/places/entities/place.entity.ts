@@ -1,12 +1,14 @@
 import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.entity';
 import { PlaceComment } from 'src/place-comments/entities/place-comment.entity';
 import { PlaceImage } from 'src/place-images/entities/place-image.entity';
+import { Point } from 'src/point/entities/point.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -41,4 +43,8 @@ export class Place {
     referencedColumnName: 'id',
   })
   commercialInfo: CommercialInfo;
+
+  @OneToOne(() => Point)
+  @JoinColumn({ name: 'id_point', referencedColumnName: 'id' })
+  point: Point;
 }

@@ -6,8 +6,12 @@ import { PlaceImage } from './entities/place-image.entity';
 import { PlacesModule } from 'src/places/places.module';
 
 @Module({
-  imports: [PlacesModule, TypeOrmModule.forFeature([PlaceImage])],
+  imports: [
+    //PlacesModule,
+    TypeOrmModule.forFeature([PlaceImage]),
+  ],
   controllers: [PlaceImagesController],
   providers: [PlaceImagesService],
+  exports: [PlaceImagesService],
 })
 export class PlaceImagesModule {}

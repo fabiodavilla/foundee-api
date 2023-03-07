@@ -1,5 +1,6 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { UserNoPassword } from 'src/auth/dto/user-no-password.dto';
 import { UserImageService } from 'src/user-image/user-image.service';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -27,13 +28,27 @@ export class UserService {
   }
 
   // Ler todos os usuários
-  findAll(): Promise<Array<User>> {
-    return this.usersRepository.find();
+  async findAll(): Promise<Array<UserNoPassword>> {
+    const users = await this.usersRepository.find();
+
+    const userListDto = users.map((user) => {
+      const { password, ...rest } = user;
+      return rest as UserNoPassword;
+    });
+
+    return userListDto;
   }
 
   // Ler um usuário pelo ID
   findOneById(id: string): Promise<User> {
     return this.usersRepository.findOneBy({ id });
+  }
+
+  async findUserById(id: string): Promise<UserNoPassword> {
+    const user = await this.usersRepository.findOneBy({ id });
+
+    const { password, ...rest } = user;
+    return rest as UserNoPassword;
   }
 
   findOneByEmail(email: string): Promise<User> {

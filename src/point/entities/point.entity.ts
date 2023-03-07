@@ -11,16 +11,13 @@ import {
 @Entity('point')
 export class Point {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'numeric', precision: 10, scale: 7 })
   latitude: number;
 
-  @Column({ type: 'integer' })
+  @Column({ type: 'numeric', precision: 10, scale: 7 })
   longitude: number;
-
-  @Column({ type: 'integer' })
-  placeType: number;
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
@@ -28,5 +25,5 @@ export class Point {
 
   @OneToOne(() => Place)
   @JoinColumn({ name: 'id_place', referencedColumnName: 'id' })
-  idPlace: Place;
+  place: Place;
 }

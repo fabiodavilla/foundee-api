@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { JwtService } from '@nestjs/jwt';
 
 // Modules
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { PlacesModule } from './places/places.module';
 import { PlaceImagesModule } from './place-images/place-images.module';
@@ -25,6 +26,9 @@ import { CommercialInfo } from './commercial-info/entities/commercial-info.entit
 import { Phone } from './phone/entities/phone.entity';
 import { UserImage } from './user-image/entities/user-image.entity';
 import { Point } from './point/entities/point.entity';
+
+// Middleware
+import { JwtMiddleware } from './common/middlewares/jwt.middleware';
 
 @Module({
   imports: [
@@ -61,10 +65,21 @@ import { Point } from './point/entities/point.entity';
     AuthModule,
   ],
   providers: [
+    JwtService,
     {
       provide: APP_INTERCEPTOR,
       useClass: ResponseInterceptor,
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(JwtMiddleware)
+      .exclude({
+        path: 'auth/login',
+        method: RequestMethod.POST,
+      })
+      .forRoutes('*');
+  }
+}

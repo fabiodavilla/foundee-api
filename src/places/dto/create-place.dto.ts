@@ -1,7 +1,10 @@
 export class CreatePlaceDto {
   name: string;
   description: string;
-  status: number;
   placeType: number;
-  commercialInfoId?: string;
+  latitude: number;
+  longitude: number;
+  idUser: string;
+  imagesStringList: string[];
+  commercialInfoId: string;
 }

@@ -23,23 +23,23 @@ import placeImagesResponse from 'src/common/api-documentation/placeImagesRespons
 export class PlaceImagesController {
   constructor(private readonly placeImagesService: PlaceImagesService) {}
 
-  @Post()
-  @ApiResponse(placeImagesResponse.createOkResponse)
-  @ApiResponse(placeImagesResponse.createBadResponse)
-  @UseInterceptors(FileInterceptor('file'))
-  create(
-    @Body() createPlaceImageDto: CreatePlaceImageDto,
-    @UploadedFile() file: Express.Multer.File,
-  ) {
-    return this.placeImagesService.create(createPlaceImageDto, file);
-  }
+  // @Post()
+  // @ApiResponse(placeImagesResponse.createOkResponse)
+  // @ApiResponse(placeImagesResponse.createBadResponse)
+  // @UseInterceptors(FileInterceptor('file'))
+  // create(
+  //   @Body() createPlaceImageDto: CreatePlaceImageDto,
+  //   @UploadedFile() file: Express.Multer.File,
+  // ) {
+  //   return this.placeImagesService.create(createPlaceImageDto, file);
+  // }
 
-  @Get('by-place/:idPlace')
-  @ApiResponse(placeImagesResponse.getAllByPlaceOkResponse)
-  @ApiResponse(placeImagesResponse.getAllByPlaceBadResponse)
-  findAllByPlaceId(@Param('idPlace', new ParseUUIDPipe()) idPlace: string) {
-    return this.placeImagesService.findAllByPlaceId(idPlace);
-  }
+  // @Get('by-place/:idPlace')
+  // @ApiResponse(placeImagesResponse.getAllByPlaceOkResponse)
+  // @ApiResponse(placeImagesResponse.getAllByPlaceBadResponse)
+  // findAllByPlaceId(@Param('idPlace', new ParseUUIDPipe()) idPlace: string) {
+  //   return this.placeImagesService.findAllByPlaceId(idPlace);
+  // }
 
   @Get(':id')
   @ApiResponse(placeImagesResponse.getByIdOkResponse)
