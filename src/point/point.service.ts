@@ -70,7 +70,7 @@ export class PointService {
       );
 
     return this.pointRepository.find({
-      where: { idUser: user },
+      where: { user },
     });
   }
 

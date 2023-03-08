@@ -4,6 +4,7 @@ import {
   Column,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -13,15 +14,15 @@ export class Point {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ type: 'numeric', precision: 10, scale: 7 })
+  @Column({ type: 'numeric', precision: 15, scale: 12 })
   latitude: number;
 
-  @Column({ type: 'numeric', precision: 10, scale: 7 })
+  @Column({ type: 'numeric', precision: 15, scale: 12 })
   longitude: number;
 
-  @OneToOne(() => User)
+  @ManyToOne(() => User, (user) => user.points, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'id_user', referencedColumnName: 'id' })
-  idUser: User;
+  user: User;
 
   @OneToOne(() => Place)
   @JoinColumn({ name: 'id_place', referencedColumnName: 'id' })

@@ -1,6 +1,7 @@
 import { CommercialInfo } from 'src/commercial-info/entities/commercial-info.entity';
 import { Phone } from 'src/phone/entities/phone.entity';
 import { PlaceComment } from 'src/place-comments/entities/place-comment.entity';
+import { Point } from 'src/point/entities/point.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('user')
@@ -49,6 +50,9 @@ export class User {
 
   @OneToMany(() => PlaceComment, (placeComments) => placeComments.user)
   placeComments: PlaceComment[];
+
+  @OneToMany(() => Point, (point) => point.user)
+  points: Point[];
 
   @OneToMany(() => Phone, (phone) => phone.user)
   phones: Phone[];

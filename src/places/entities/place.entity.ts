@@ -43,8 +43,4 @@ export class Place {
     referencedColumnName: 'id',
   })
   commercialInfo: CommercialInfo;
-
-  @OneToOne(() => Point)
-  @JoinColumn({ name: 'id_point', referencedColumnName: 'id' })
-  point: Point;
 }

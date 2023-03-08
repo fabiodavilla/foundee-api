@@ -74,7 +74,6 @@ export class PlacesService {
         placeImages.push(newImage);
       });
 
-      newPlace.placeImages = placeImages;
       await this.placeImageService.createMany(placeImages);
 
       // Added point
@@ -82,14 +81,14 @@ export class PlacesService {
       const user = await this.userService.findOneById(
         this.request.userObject.idUser,
       );
-      point.idUser = user;
+      point.user = user;
       point.latitude = Number(createPlaceDto.latitude);
       point.longitude = Number(createPlaceDto.longitude);
       point.place = newPlace;
 
       await this.pointService.create(point);
 
-      areturn newPlace;
+      return newPlace;
       // check pushes
     } catch (error) {
       throw new Error(error);
