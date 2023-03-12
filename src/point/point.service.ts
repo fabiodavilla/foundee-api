@@ -1,14 +1,8 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PlacesService } from 'src/places/places.service';
 import { UserService } from 'src/user/user.service';
-import {
-  DeleteResult,
-  LessThan,
-  MoreThan,
-  Repository,
-  UpdateResult,
-} from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
+import { BoundsDto } from './dto/bounds.dto';
 import { Point } from './entities/point.entity';
 
 @Injectable()
@@ -42,22 +36,17 @@ export class PointService {
     return this.pointRepository.save(point);
   }
 
-  async findAllByLocation(
-    latDown: number,
-    lonDown: number,
-    latUp: number,
-    lonUp: number,
-  ): Promise<Array<Point>> {
-    const res = await this.pointRepository.find({
-      where: {
-        latitude: MoreThan(latDown) && LessThan(latUp),
-        // latitude: { $gt: latDown, $lt: latUp },
-        longitude: MoreThan(lonDown) && LessThan(lonUp),
-        // longitude: { $gt: lonDown, $lt: lonUp },
-      },
-    });
+  async findAllByLocation(bounds: BoundsDto): Promise<Array<Point>> {
+    const results = await this.pointRepository
+      .createQueryBuilder('point')
+      .leftJoinAndSelect('point.place', 'place')
+      .where(
+        `"point"."longitude" BETWEEN least(${bounds.west}, ${bounds.east}) AND greatest(${bounds.west}, ${bounds.east})
+        AND "point"."latitude" BETWEEN least(${bounds.north}, ${bounds.south}) AND greatest(${bounds.north}, ${bounds.south})`,
+      )
+      .getMany();
 
-    return res;
+    return results;
   }
 
   async findAllByUser(idUser: string): Promise<Array<Point>> {

@@ -915,5 +915,29 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "71542689-a57e-4eb4-b1e5-492dbf947d70",
+    "colId": "7c447874-2477-43ad-a20a-b8f4ce9f4359",
+    "containerId": "e1580c68-9f38-45de-a86f-5c94afd8e578",
+    "name": "Get Locations",
+    "url": "{{base_url}}/{{points_dir}}/location?bounds={\"north\":37.43059327349143,\"south\":37.4092082986656,\"east\":-122.07528386797225,\"west\":\"asdasd\"}",
+    "method": "GET",
+    "sortNum": 400000,
+    "created": "2023-03-11T20:20:26.221Z",
+    "modified": "2023-03-12T02:37:13.059Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "bounds",
+        "value": "{\"north\":37.43059327349143,\"south\":37.4092082986656,\"east\":-122.07528386797225,\"west\":\"asdasd\"}",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
   }
 ]

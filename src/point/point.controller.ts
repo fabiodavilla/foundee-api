@@ -1,16 +1,20 @@
 import {
   Controller,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   ParseUUIDPipe,
   Query,
-  ParseIntPipe,
   UseGuards,
 } from '@nestjs/common';
 import { PointService } from './point.service';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import pointResponse from 'src/common/api-documentation/pointResponse';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { plainToClass } from 'class-transformer';
+import { BoundsDto } from './dto/bounds.dto';
+import { validate } from 'class-validator';
 
 @ApiTags('Points')
 @UseGuards(JwtAuthGuard)
@@ -21,13 +25,15 @@ export class PointController {
   @Get('location')
   @ApiResponse(pointResponse.getSquareOkResponse)
   @ApiResponse(pointResponse.getSquareBadResponse)
-  findAllByLocation(
-    @Query('latDown', new ParseIntPipe()) latDown: number,
-    @Query('lonDown', new ParseIntPipe()) lonDown: number,
-    @Query('latUp', new ParseIntPipe()) latUp: number,
-    @Query('lonUp', new ParseIntPipe()) lonUp: number,
-  ) {
-    return this.pointService.findAllByLocation(latDown, lonDown, latUp, lonUp);
+  async findAllByLocation(@Query('bounds') bounds: string) {
+    const boundsDto = plainToClass(BoundsDto, JSON.parse(bounds));
+    if ((await validate(boundsDto)).length > 0) {
+      throw new HttpException(
+        'Bounds validation failed',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return await this.pointService.findAllByLocation(boundsDto);
   }
 
   @Get(':idUser')

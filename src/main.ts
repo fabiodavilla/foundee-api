@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
+import * as compression from 'compression';
 
 (async function bootstrap() {
   // Module Createion
@@ -10,6 +11,9 @@ import { AppModule } from './app.module';
 
   // Helmet
   app.use(helmet());
+
+  // Compression
+  app.use(compression());
 
   // Swagger
   const config = new DocumentBuilder()
